@@ -1,0 +1,18 @@
+table {
+    width: 100%;
+    background: white;
+    border-collapse: collapse;
+}
+td, th {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #000000;
+}
+.pre {
+    font-family: "Consolas", serif;
+    background: #dddddd;
+    padding: 10px 15px;
+}
+img {
+    max-width: 100%;
+}
