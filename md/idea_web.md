@@ -10,31 +10,31 @@
 
 ## 2.1 新建项目
 
-![idea_web-1](idea_web/idea_web-1.png)
+![idea_web-1](/md/idea_web/idea_web-1.png)
 
-![idea_web-1](idea_web/idea_web-2.png)
+![idea_web-1](/md/idea_web/idea_web-2.png)
 
-![idea_web-1](idea_web/idea_web-3.png)
+![idea_web-1](/md/idea_web/idea_web-3.png)
 
 ## 2.2 配置 Tomcat
 
-![idea_web-1](idea_web/idea_web-4.png)
+![idea_web-1](/md/idea_web/idea_web-4.png)
 
 ### 2.2.1 全局 Tomcat
 
-![idea_web-1](idea_web/idea_web-5.png)
+![idea_web-1](/md/idea_web/idea_web-5.png)
 
 ### 2.2.2 当前项目 Tomcat
 
-![idea_web-1](idea_web/idea_web-6.png)
+![idea_web-1](/md/idea_web/idea_web-6.png)
 
-![idea_web-1](idea_web/idea_web-7.png)
+![idea_web-1](/md/idea_web/idea_web-7.png)
 
 ## 2.3 新建 Servlet
 
-![idea_web-1](idea_web/idea_web-8.png)
+![idea_web-1](/md/idea_web/idea_web-8.png)
 
-![idea_web-1](idea_web/idea_web-9.png)
+![idea_web-1](/md/idea_web/idea_web-9.png)
 
 ## 2.4 修改 index.jsp 和 ServletGit.java
 
@@ -83,13 +83,12 @@ public class ServletGit extends javax.servlet.http.HttpServlet
 
 # 3. 启动
 
-![idea_web-1](idea_web/idea_web-10.png)
+![idea_web-1](/md/idea_web/idea_web-10.png)
 
-![idea_web-1](idea_web/idea_web-11.png)
+![idea_web-1](/md/idea_web/idea_web-11.png)
 
-![idea_web-1](idea_web/idea_web-12.png)
+![idea_web-1](/md/idea_web/idea_web-12.png)
 
-![idea_web-1](idea_web/idea_web-13.png)
 
 
 
