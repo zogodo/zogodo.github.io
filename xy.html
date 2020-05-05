@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="assets/css_pack.css">
+    <style type="text/css">
+        * {font-size: 16px; font-family: Consolas;}
+        body, input {padding: 10px;}
+        input {width: 90%;}
+        .x{width: 100px; text-align: center;}
+    </style>
+</head>
+
+<body>
+
+<p>
+    <input id="x1" class="x" type="number" value="0"></input>
+    <= x <=
+    <input id="x2" class="x" type="number" value="10"></input>
+    密度 = <input id="min" class="x" type="number" value="0.1"></input>
+</p>
+<p>
+    y = <input id="y" type="text" value="2 * Math.sin(2*x) + Math.cos(x)"></input>
+</p>
+<p>
+    <button onclick="Update()">更新</button>
+</p>
+<div class="ct-chart ct-perfect-fourth" style="height:280px;margin-top:20px;"></div>
+
+</body>
+
+<script type="text/javascript" src="assets/js_pack.js"></script>
+<script>
+var ct_data = { series: [ [] ] };
+var ct_chart = new Chartist.Line('.ct-chart', ct_data, {showArea: true, axisY: {position: 'end'}});
+function Update() {
+    var x1 = parseFloat($("#x1").val());
+    var x2 = parseFloat($("#x2").val());
+    var min = parseFloat($("#min").val());
+    ct_data.series[0] = [];
+    for (var x = x1; x < x2; x += min) {
+        var str = $("#y").val();
+        var y = eval(str);
+        ct_data.series[0].push(y);
+    }
+    ct_chart.update(ct_data);
+}
+Update()
+</script>
+
+</html>
