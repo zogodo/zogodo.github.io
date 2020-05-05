@@ -819,6 +819,10 @@ function GetPowerRecord() {
 $(document).ready(function(){
   GetPowerRecord();
 })
+for (var i = 1; i < 30; i++) {
+  var y = Math.sin((i-3)/2) - ((i + 8) / i) + 10;
+  ct_data.series[0].push(y);
+}
 //图表-end
 
 //定时任务-start
