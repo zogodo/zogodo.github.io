@@ -30,7 +30,7 @@
 <script type="text/javascript" src="assets/js_pack.js"></script>
 <script>
 var ct_data = { labels: [], series: [ [] ] };
-var ct_chart = new Chartist.Line('.ct-chart', ct_data, {showArea: true, axisY: {position: 'end'}});
+var ct_chart = new Chartist.Line('.ct-chart', ct_data, {showArea: true, showPoint: false, axisY: {position: 'end'}});
 var ct_chart_div = $("#ct-chart");
 function Update() {
     var x1 = parseFloat($("#x1").val());
