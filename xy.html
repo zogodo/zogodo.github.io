@@ -8,6 +8,7 @@
         body, input {padding: 10px;}
         input {width: 90%;}
         .x{width: 100px; text-align: center;}
+        #ct-chart {width: 100%; margin-top:20px;}
     </style>
 </head>
 
@@ -17,15 +18,15 @@
     <input id="x1" class="x" type="number" value="0"></input>
     <= x <=
     <input id="x2" class="x" type="number" value="10"></input>
-    密度 = <input id="min" class="x" type="number" value="0.1"></input>
+    ?? = <input id="min" class="x" type="number" value="0.1"></input>
 </p>
 <p>
     y = <input id="y" type="text" value="2 * Math.sin(2*x) + Math.cos(x)"></input>
 </p>
 <p>
-    <button onclick="Update()">更新</button>
+    <button onclick="Update()">??</button>
 </p>
-<div class="ct-chart ct-perfect-fourth" style="height:280px;margin-top:20px;"></div>
+<div id="ct-chart" class="ct-chart ct-perfect-fourth"></div>
 
 </body>
 
@@ -38,12 +39,18 @@ function Update() {
     var x2 = parseFloat($("#x2").val());
     var min = parseFloat($("#min").val());
     ct_data.series[0] = [];
+    var min = Math.pow(2, 31);
+    var max = -Math.pow(2, 31);
     for (var x = x1; x < x2; x += min) {
         var str = $("#y").val();
         var y = eval(str);
         ct_data.series[0].push(y);
+        if (y < min) min = y;
+        if (y > max) max = y;
     }
     ct_chart.update(ct_data);
+    var width_unit = $("#ct-chart").width / (x2 - x1);
+    var height = (max - min);
 }
 Update()
 </script>
