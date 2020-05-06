@@ -29,7 +29,7 @@
 
 <script type="text/javascript" src="assets/js_pack.js"></script>
 <script>
-var ct_data = { series: [ [] ] };
+var ct_data = { labels: [], series: [ [] ] };
 var ct_chart = new Chartist.Line('.ct-chart', ct_data, {showArea: true, axisY: {position: 'end'}});
 var ct_chart_div = $("#ct-chart");
 function Update() {
@@ -43,6 +43,11 @@ function Update() {
         var str = $("#y").val();
         var y = eval(str);
         ct_data.series[0].push(y);
+        if (Math.abs(x % 1) < unit) {
+            ct_data.labels.push(x.toFixed(0));
+        } else {
+            ct_data.labels.push('');
+        }
         if (y < min) min = y;
         if (y > max) max = y;
     }
