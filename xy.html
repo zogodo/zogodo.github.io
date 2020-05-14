@@ -37,6 +37,7 @@ function Update() {
     var x2 = parseFloat($("#x2").val());
     var unit = parseFloat($("#unit").val());
     ct_data.series[0] = [];
+    ct_data.labels = [];
     var min = Math.pow(2, 31);
     var max = -Math.pow(2, 31);
     for (var x = x1; x < x2; x += unit) {
