@@ -47,6 +47,14 @@ function Update() {
     var x1 = parseFloat($("#x1").val());
     var x2 = parseFloat($("#x2").val());
     var unit = parseFloat($("#unit").val());
+    if (isNaN(x1) || isNaN(x2) || parseFloat(x1) >= parseFloat(x2)) {
+        alert("范围错误!");
+        return;
+    }
+    if (isNaN(unit) || parseFloat(unit) < 0.001) {
+        alert("密度错误!\n\n最小密度: 0.001");
+        return;
+    }
     ct_data.series[0] = [];
     ct_data.labels = [];
     var min = Math.pow(2, 31);
