@@ -11,11 +11,11 @@
 
 void SignalHandler(int sig)
 {
-    printf("SIGSEGVaaaa\n");
+    printf("SIGUSR1 aaaa\n");
     void (*_mcleanup)(void);
     _mcleanup = (void (*)(void))dlsym(RTLD_DEFAULT, "_mcleanup");
     if (_mcleanup == NULL)
-             printf("SIGSEGVzzzz\n");
+             printf("SIGUSR1 zzzz\n");
     else _mcleanup();
     _exit(0);
 }
@@ -31,7 +31,7 @@ void fun1()
 
 int main()
 {
-    signal(SIGSEGV, SignalHandler);
+    signal(SIGUSR1, SignalHandler);
 
     printf("start\n");
     fun1();
@@ -46,7 +46,7 @@ int main()
 g++ -Wl,--no-as-needed -ldl -pg main.cpp
 ./a.out &
 sleep 4
-kill -SIGSEGV `ps -ef | grep a.out | awk '{print $2}'`
+kill -SIGUSR1 `ps -ef | grep a.out | awk '{print $2}'`
 gprof -b a.out gmon.out > report.txt
 ```
 
@@ -85,3 +85,31 @@ Index by function name
 
 
 参考: https://blog.csdn.net/stanjiang2010/article/details/5655143
+
+参考: https://stackoverflow.com/questions/10205543/saving-gmon-out-before-killing-a-process
+
+参考: https://stackoverflow.com/questions/7376228/linux-c-catching-kill-signal-for-graceful-termination
+
+```cpp
+#include <dlfcn.h>
+#include <stdio.h>
+#include <unistd.h>
+
+void sigUsr1Handler(int sig)
+{
+    fprintf(stderr, "Exiting on SIGUSR1\n");
+    void (*_mcleanup)(void);
+    _mcleanup = (void (*)(void))dlsym(RTLD_DEFAULT, "_mcleanup");
+    if (_mcleanup == NULL)
+         fprintf(stderr, "Unable to find gprof exit hook\n");
+    else _mcleanup();
+    _exit(0);
+}
+
+int main(int argc, char* argv[])
+{
+    signal(SIGUSR1, sigUsr1Handler);
+    neverReturningLibraryFunction();
+}
+```
+
