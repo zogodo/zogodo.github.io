@@ -1,0 +1,56 @@
+<html>
+<head>
+    <title>Angular JS Demo</title>
+    <meta charset="UTF-8">
+    <style>
+        table{width:800px;border-collapse:collapse;}
+        td,th{padding:10px;border:1px solid #000;text-align:center;width:25%;}
+        input,button{padding:5px 10px;}
+    </style>
+</head>
+<body ng-app="myApp" ng-controller="myCtrl">
+    <h1>小红的年龄: <span>{{xiao_hong.age}}</span></h1>
+    <p>
+        <span>小红的年龄: </span>
+        <input ng-model="xiao_hong.age">
+        <button ng-click="ChangeAge()">点我</button>
+    </p>
+    <table>
+        <tr>
+            <th>序号</th>
+            <th>姓名</th>
+            <th>年龄</th>
+            <th>注册时间</th>
+        </tr>
+        <tr ng-repeat="user in users">
+            <td>{{$index+1}}</td>
+            <td>{{user.name}}</td>
+            <td>{{user.age}}</td>
+            <td>{{user.signup_time|date:'yyyy-MM-dd HH:mm'}}</td>
+        </tr>
+    </table>
+
+    <br/>
+    <a target="_blank" href="http://119.23.191.79/lab/views/login.jsp">应用</a>
+
+    <!-- <script src="https://code.angularjs.org/1.4.6/angular.min.js"></script> -->
+    <script src="js/angular.min.js"></script>
+
+    <script>
+        var users = [
+            {name: "张三", age: 19, signup_time: 1596798671000},
+            {name: "李四", age: 20, signup_time: 1565150520000},
+            {name: "小红", age: 18, signup_time: 1596398671000},
+        ];
+        var app = angular.module('myApp', []);
+        app.controller('myCtrl', function($scope, $http) {
+            $scope.users = users;
+            $scope.xiao_hong = users[2];
+            $scope.ChangeAge = function() {
+                users[2].age = Math.floor(Math.random()*100);;
+            }
+        });
+    </script>
+
+</body>
+</html>
