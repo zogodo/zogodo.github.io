@@ -50,9 +50,9 @@
             $http.get("/data/users").then(function(re) {
                 $scope.users = re.data;
             });
-            $scope.xiao_hong = users[2];
+            $scope.xiao_hong = $scope.users[2];
             $scope.ChangeAge = function() {
-                users[2].age = Math.floor(Math.random()*100);;
+                $scope.users[2].age = Math.floor(Math.random()*100);;
             }
         });
     </script>
