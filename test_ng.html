@@ -48,7 +48,7 @@
         app.controller('myCtrl', function($scope, $http) {
             //$scope.users = users;
             //$scope.xiao_hong = $scope.users[2];
-            $http.get("/data/users").then(function(re) {
+            $http.get("https://zogodo.github.io/data/users").then(function(re) {
                 $scope.users = re.data;
                 $scope.xiao_hong = $scope.users[2];
             });
