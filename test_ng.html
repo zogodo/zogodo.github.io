@@ -37,14 +37,19 @@
     <script src="js/angular.min.js"></script>
 
     <script>
+        /*
         var users = [
             {name: "张三", age: 19, signup_time: 1596798671000},
             {name: "李四", age: 20, signup_time: 1565150520000},
             {name: "小红", age: 18, signup_time: 1596398671000},
         ];
+        */
         var app = angular.module('myApp', []);
         app.controller('myCtrl', function($scope, $http) {
-            $scope.users = users;
+            //$scope.users = users;
+            $http.get("/data/users").then(function(re) {
+                $scope.users = re.data;
+            });
             $scope.xiao_hong = users[2];
             $scope.ChangeAge = function() {
                 users[2].age = Math.floor(Math.random()*100);;
