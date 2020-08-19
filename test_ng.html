@@ -13,7 +13,8 @@
     <p>
         <span>小红的年龄: </span>
         <input ng-model="xiao_hong.age">
-        <button ng-click="ChangeAge()">点我</button>
+        <button ng-click="ChangeAge()">点我修改</button>
+        <button ng-click="AddUser()">点我添加</button>
     </p>
     <table>
         <tr>
@@ -53,7 +54,10 @@
                 $scope.xiao_hong = $scope.users[2];
             });
             $scope.ChangeAge = function() {
-                $scope.users[2].age = Math.floor(Math.random()*100);;
+                $scope.users[2].age = Math.floor(Math.random()*100);
+            }
+            $scope.AddUser = function() {
+                $scope.users.push({name: "王五", age: 21, signup_time: 1596798671000})
             }
         });
     </script>
