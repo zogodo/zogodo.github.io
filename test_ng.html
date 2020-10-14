@@ -44,7 +44,7 @@
                 $scope.xiao_hong = $scope.users[2];
             });
             $scope.ChangeAge = function() {
-                $scope.xiao_hong = Math.floor(Math.random()*100); //or $scope.users[2].age = xxx
+                $scope.xiao_hong.age = Math.floor(Math.random()*100); //or $scope.users[2].age = xxx
             }
             $scope.AddUser = function() {
                 $scope.users.push({name: "王五", age: 21, signup_time: 1596798671000})
