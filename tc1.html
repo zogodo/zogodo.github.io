@@ -1,11 +1,11 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="description" content="A front-end template that helps you build fast, modern mobile web apps.">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
-    <title>TC1 Material</title>
+    <title>zTC1</title>
     <meta name="mobile-web-app-capable" content="yes">
     <link rel="icon" sizes="192x192" href="http://119.23.191.79/tc1/images/android-desktop.png">
     <!-- Add to homescreen for Safari on iOS -->
@@ -38,9 +38,9 @@
             <i class="material-icons"><svg><use xlink:href="#icon-more_vert" /></svg></i>
           </button>
           <ul class="mdl-menu mdl-js-menu mdl-js-ripple-effect mdl-menu--bottom-right" for="hdrbtn">
-            <li class="mdl-menu__item">About</li>
-            <li class="mdl-menu__item">Contact</li>
-            <li class="mdl-menu__item">Legal information</li>
+            <li class="mdl-menu__item" onclick="ChangeLanguage('en')">English</li>
+            <li class="mdl-menu__item" onclick="ChangeLanguage('cn')">中文</li>
+            <li class="mdl-menu__item" onclick="ChangeLanguage('jp')">日本語</li>
           </ul>
         </div>
       </header>
@@ -65,19 +65,47 @@
         </header>
         <nav class="demo-navigation mdl-navigation mdl-color--blue-grey-800">
           <a class="mdl-navigation__link mdl-nav-active" href="javascript:ShowPage(1);">
-            <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation"><svg><use xlink:href="#icon-home" /></svg></i>Home</a>
+            <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">
+              <svg><use xlink:href="#icon-home" /></svg>
+            </i>
+            <span class="lang" langKey="Home">主页</span>
+          </a>
           <a class="mdl-navigation__link" href="javascript:ShowPage(2);">
-            <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation"><svg><use xlink:href="#icon-settings" /></svg></i>Config</a>
+            <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">
+              <svg><use xlink:href="#icon-settings" /></svg>
+            </i>
+            <span class="lang" langKey="Config">设置</span>
+          </a>
           <a class="mdl-navigation__link" href="javascript:ShowPage(3);">
-            <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation"><svg><use xlink:href="#icon-access_alarm" /></svg></i>Timed Task</a>
+            <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">
+              <svg><use xlink:href="#icon-access_alarm" /></svg>
+            </i>
+            <span class="lang" langKey="TimedTask">定时任务</span>
+          </a>
           <a class="mdl-navigation__link" href="javascript:ShowPage(4);">
-            <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation"><svg><use xlink:href="#icon-info" /></svg></i>System Status</a>
+            <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">
+              <svg><use xlink:href="#icon-info" /></svg>
+            </i>
+            <span class="lang" langKey="SystemStatus">系统状态</span>
+          </a>
           <a class="mdl-navigation__link" href="javascript:ShowPage(5);">
-            <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation"><svg><use xlink:href="#icon-cloud_download" /></svg></i>OTA</a>
+            <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">
+              <svg><use xlink:href="#icon-cloud_download" /></svg>
+            </i>
+            <span class="lang" langKey="OTA">在线升级</span>
+          </a>
           <a class="mdl-navigation__link" href="javascript:ShowPage(6);">
-            <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation"><svg><use xlink:href="#icon-notes" /></svg></i>System Log</a>
+            <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">
+              <svg><use xlink:href="#icon-notes" /></svg>
+            </i>
+            <span class="lang" langKey="SystemLog">系统日志</span>
+          </a>
           <a class="mdl-navigation__link" href="javascript:ShowPage(7);">
-            <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation"><svg><use xlink:href="#icon-help" /></svg></i>About</a>
+            <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">
+              <svg><use xlink:href="#icon-help" /></svg>
+            </i>
+            <span class="lang" langKey="About">关于</span>
+          </a>
         </nav>
       </div>
       <main class="mdl-layout__content">
@@ -88,7 +116,7 @@
             <div class="demo-options mdl-card mdl-shadow--2dp mdl-cell mdl-cell--4-col mdl-cell--3-col-tablet mdl-cell--12-col-desktop">
               <div class="mdl-card__supporting-text">
 
-                <h3>Power Control</h3>
+                <h3>插座控制</h3>
                 <!--
                 <span class="mdl-list__item-secondary-action">
                   <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="list-switch-0">
@@ -99,7 +127,7 @@
                 <ul id="socket_ul" class="demo-list-control mdl-list">
                   <li class="mdl-list__item">
                     <span class="mdl-list__item-primary-content">
-                      Socket-1
+                      <span class="lang" langKey="Socket">插座</span>-1
                     </span>
                     <span class="mdl-list__item-secondary-action">
                       <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="list-switch-1">
@@ -109,7 +137,7 @@
                   </li>
                   <li class="mdl-list__item">
                     <span class="mdl-list__item-primary-content">
-                      Socket-2
+                      <span class="lang" langKey="Socket">插座</span>-2
                     </span>
                     <span class="mdl-list__item-secondary-action">
                       <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="list-switch-2">
@@ -119,7 +147,7 @@
                   </li>
                   <li class="mdl-list__item">
                     <span class="mdl-list__item-primary-content">
-                      Socket-3
+                      <span class="lang" langKey="Socket">插座</span>-3
                     </span>
                     <span class="mdl-list__item-secondary-action">
                       <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="list-switch-3">
@@ -129,7 +157,7 @@
                   </li>
                   <li class="mdl-list__item">
                     <span class="mdl-list__item-primary-content">
-                      Socket-4
+                      <span class="lang" langKey="Socket">插座</span>-4
                     </span>
                     <span class="mdl-list__item-secondary-action">
                       <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="list-switch-4">
@@ -139,7 +167,7 @@
                   </li>
                   <li class="mdl-list__item">
                     <span class="mdl-list__item-primary-content">
-                      Socket-5
+                      <span class="lang" langKey="Socket">插座</span>-5
                     </span>
                     <span class="mdl-list__item-secondary-action">
                       <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="list-switch-5">
@@ -149,7 +177,7 @@
                   </li>
                   <li class="mdl-list__item">
                     <span class="mdl-list__item-primary-content">
-                      Socket-6
+                      <span class="lang" langKey="Socket">插座</span>-6
                     </span>
                     <span class="mdl-list__item-secondary-action">
                       <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="list-switch-6">
@@ -164,20 +192,19 @@
           </div>
 
           <div id="ct-chart-par" class="page page1 mdl-card__supporting-text mdl-shadow--2dp mdl-cell mdl-cell--6-col"
-           style="height:300px;overflow-x:scroll;overflow-y:hidden;">
+           style="height:315px;overflow-x:scroll;overflow-y:hidden;">
             <table class="pw">
               <tr>
                 <td>P: <span id="p" class="success">0</span> W</td>
                 <td>W: <span id="w" class="error">0</span> kW·h</td>
               </tr>
             </table>
-            <!-- <div style="clear:both;"></div> -->
             <div id="ct-chart" class="ct-chart ct-perfect-fourth" style="height:280px;margin-top:20px;"></div>
           </div>
 
           <div class="page page2 mdl-cell mdl-cell--5-col demo-card-square mdl-card mdl-shadow--2dp" style="overflow: unset;">
             <div class="mdl-card__title mdl-card--expand">
-              <h2 class="mdl-card__title-text">Network Config</h2>
+              <h2 class="mdl-card__title-text">网络设置</h2>
             </div>
             <div class="mdl-card__supporting-text" style="overflow: unset;">
             <form action="#">
@@ -195,46 +222,46 @@
               </div>
               <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                 <input id="custom_password" class="mdl-textfield__input" type="password">
-                <label class="mdl-textfield__label" for="custom_password">Password</label>
+                <label class="mdl-textfield__label" for="custom_password">密码</label>
               </div>
               <div>
                 <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="custom_ap">
                   <input type="radio" id="custom_ap" class="mdl-radio__button" name="options" value="1">
-                  <span class="mdl-radio__label">AP</span>
+                  <span class="mdl-radio__label">开热点</span>
                 </label>
                 <label class="station-radio mdl-radio mdl-js-radio mdl-js-ripple-effect" for="custom_station">
                   <input type="radio" id="custom_station" class="mdl-radio__button" name="options" value="2" checked>
-                  <span class="mdl-radio__label">Station</span>
+                  <span class="mdl-radio__label">连Wifi</span>
                 </label>
               </div>
             </form>
             </div>
             <div class="mdl-card__actions mdl-card--border">
               <a id="wifi_submit" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
-                Submit
+                提交
               </a>
             </div>
           </div>
 
           <div class="page page2 mdl-cell mdl-cell--5-col demo-card-square mdl-card mdl-shadow--2dp" style="z-index: unset;">
             <div class="mdl-card__title mdl-card--expand">
-              <h2 class="mdl-card__title-text">MQTT Config</h2>
+              <h2 class="mdl-card__title-text">MQTT 设置</h2>
             </div>
             <div class="mdl-card__supporting-text">
             <form action="#">
               <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                 <input class="mdl-textfield__input" type="text" id="mqtt_addr">
-                <label class="mdl-textfield__label" for="mqtt_addr">MQTT Addr</label>
+                <label class="mdl-textfield__label" for="mqtt_addr">MQTT 地址</label>
               </div>
               <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                 <input class="mdl-textfield__input" type="text" id="mqtt_port">
-                <label class="mdl-textfield__label" for="mqtt_port">MQTT Port</label>
+                <label class="mdl-textfield__label" for="mqtt_port">MQTT 端口</label>
               </div>
             </form>
             </div>
             <div class="mdl-card__actions mdl-card--border">
               <a id="mqtt_submit" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
-                Submit
+                提交
               </a>
             </div>
           </div>
@@ -242,32 +269,32 @@
           <div class="page page3 mdl-cell mdl-cell--5-col demo-card-event mdl-card mdl-shadow--2dp">
             <table id="timed_task_tb" class="mdl-data-table mdl-js-data-table">
               <tr>
-                <th>Time</th>
-                <th>Socket</th>
-                <th>On</th>
-                <th>Loop</th>
-                <th>Option</th>
+                <th>时间</th>
+                <th>插座</th>
+                <th>开关</th>
+                <th>循环</th>
+                <th>操作</th>
               </tr>
               <tr>
                 <td>02-15 07:11</td>
                 <td>1</td>
                 <td>0</td>
                 <td>0</td>
-                <td><a>Delete</a></td>
+                <td><a>删除</a></td>
               </tr>
               <tr>
                 <td>2020-02-15<br>07:11:08</td>
                 <td>1</td>
                 <td>0</td>
                 <td>6</td>
-                <td><a>Delete</a></td>
+                <td><a>删除</a></td>
               </tr>
             </table>
           </div>
 
           <div class="page page3 over-unset mdl-cell mdl-cell--5-col demo-card-square mdl-card mdl-shadow--2dp" style="z-index: unset;">
             <div class="mdl-card__title mdl-card--expand">
-              <h2 class="mdl-card__title-text">Add Task</h2>
+              <h2 class="mdl-card__title-text">添加任务</h2>
             </div>
             <div class="over-unset mdl-card__supporting-text">
               <form action="#">
@@ -275,30 +302,31 @@
                   <input type="text" id="task_weekday" value="" class="mdl-textfield__input" readonly>
                   <input type="hidden" value="0" name="task_weekday">
                   <i class="mdl-icon-toggle__label material-icons"><svg><use xlink:href="#icon-keyboard_arrow_down" /></svg></i>
-                  <label for="task_weekday" class="mdl-textfield__label">No Loop</label>
+                  <label for="task_weekday" class="mdl-textfield__label">是否循环</label>
                   <ul for="task_weekday" class="mdl-menu mdl-menu--bottom-left mdl-js-menu">
-                      <li class="mdl-menu__item" data-val="0" data-selected="true">No Loop</li>
-                      <li class="mdl-menu__item" data-val="1">Monday</li>
-                      <li class="mdl-menu__item" data-val="2">Tuesday</li>
-                      <li class="mdl-menu__item" data-val="3">Wednesday</li>
-                      <li class="mdl-menu__item" data-val="4">Thursday</li>
-                      <li class="mdl-menu__item" data-val="5">Friday</li>
-                      <li class="mdl-menu__item" data-val="6">Saturday</li>
-                      <li class="mdl-menu__item" data-val="7">Sunday</li>
+                      <li class="mdl-menu__item" data-val="0" data-selected='true'>无循环</li>
+                      <li class="mdl-menu__item" data-val="8">每天</li>
+                      <li class="mdl-menu__item" data-val="1">星期一</li>
+                      <li class="mdl-menu__item" data-val="2">星期二</li>
+                      <li class="mdl-menu__item" data-val="3">星期三</li>
+                      <li class="mdl-menu__item" data-val="4">星期四</li>
+                      <li class="mdl-menu__item" data-val="5">星期五</li>
+                      <li class="mdl-menu__item" data-val="6">星期六</li>
+                      <li class="mdl-menu__item" data-val="7">星期日</li>
                   </ul>
                 </div>
                 <div class="mdl-textfield mdl-js-textfield getmdl-select">
                   <input type="text" value="" class="mdl-textfield__input" readonly>
                   <input type="hidden" value="" id="task_skt_idx" name="task_skt_idx">
                   <i class="mdl-icon-toggle__label material-icons"><svg><use xlink:href="#icon-keyboard_arrow_down" /></svg></i>
-                  <label for="task_skt_idx" class="mdl-textfield__label">Socket</label>
+                  <label for="task_skt_idx" class="mdl-textfield__label">插座</label>
                   <ul for="task_skt_idx" class="mdl-menu mdl-menu--bottom-left mdl-js-menu">
-                      <li class="mdl-menu__item" data-val="1" data-selected="true">Socket-1</li>
-                      <li class="mdl-menu__item" data-val="2">Socket-2</li>
-                      <li class="mdl-menu__item" data-val="3">Socket-3</li>
-                      <li class="mdl-menu__item" data-val="4">Socket-4</li>
-                      <li class="mdl-menu__item" data-val="5">Socket-5</li>
-                      <li class="mdl-menu__item" data-val="6">Socket-6</li>
+                      <li class="mdl-menu__item" data-val="1" data-selected='true'>插座-1</li>
+                      <li class="mdl-menu__item" data-val="2">插座-2</li>
+                      <li class="mdl-menu__item" data-val="3">插座-3</li>
+                      <li class="mdl-menu__item" data-val="4">插座-4</li>
+                      <li class="mdl-menu__item" data-val="5">插座-5</li>
+                      <li class="mdl-menu__item" data-val="6">插座-6</li>
                   </ul>
                 </div>
                 <div class="mdl-textfield mdl-js-textfield">
@@ -306,11 +334,11 @@
                   <label class="mdl-textfield__label" for="sample1"></label>
                 </div>
                 <div class="mdl-textfield mdl-js-textfield">
-                  <input class="mdl-textfield__input" type="time" id="task_time">
+                  <input class="mdl-textfield__input" type="time" step="1" id="task_time">
                   <label class="mdl-textfield__label" for="sample1"></label>
                 </div>
                 <div class="mdl-textfield mdl-js-textfield">
-                  <span>On or Off: </span>
+                  <span>开关: </span>
                   <span class="on-off mdl-list__item-secondary-action">
                     <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="task_on">
                       <input type="checkbox" id="task_on" class="mdl-switch__input" checked />
@@ -321,7 +349,7 @@
             </div>
             <div class="mdl-card__actions mdl-card--border">
               <a href="javascript:AddTimedTask();" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
-                Submit
+                提交
               </a>
             </div>
           </div>
@@ -330,7 +358,7 @@
           <div class="page page4 mdl-cell mdl-cell--12-col demo-card-event mdl-card mdl-shadow--2dp">
             <table class="mdl-data-table mdl-js-data-table">
               <tr>
-                <th>Version</th>
+                <th>版本</th>
                 <th id="info_version">v1.0.33</th>
               </tr>
               <tr>
@@ -338,15 +366,15 @@
                 <td id="info_ip">192.168.33.222</td>
               </tr>
               <tr>
-                <td>Mask</td>
+                <td>子网掩码</td>
                 <td id="info_mask">255.255.255.0</td>
               </tr>
               <tr>
-                <td>Gateway</td>
+                <td>网关</td>
                 <td id="info_gateway">192.168.33.1</td>
               </tr>
               <tr>
-                <td>Uptime</td>
+                <td>启动时间</td>
                 <td id="uptime">10:13:43</td>
               </tr>
             </table>
@@ -354,27 +382,25 @@
               <div class="mdl-layout-spacer"></div>
               <i class="material-icons"><svg><use xlink:href="#icon-event" /></svg></i>
               <!-- <span>2020-02-22</span> -->
-              <a class="mdl-button">
-                2020-02-22
-              </a>
+              <a class="mdl-button" id="st-date">2020-02-22</a>
             </div>
           </div>
 
           <div class="page page5 mdl-cell mdl-cell--12-col demo-card-square mdl-card mdl-shadow--2dp">
             <div class="mdl-card__title mdl-card--expand">
-              <h2 class="mdl-card__title-text">OTA</h2>
+              <h2 class="mdl-card__title-text">在线升级</h2>
             </div>
             <div class="mdl-card__supporting-text">
             <form action="#">
               <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                 <input class="mdl-textfield__input" type="text" id="ota_url" value="http://119.23.191.79/tc1/tc1ota.bin">
-                <label class="mdl-textfield__label" for="ota_url">OTA Url</label>
+                <label class="mdl-textfield__label" for="ota_url">OTA 地址</label>
               </div>
             </form>
             </div>
             <div class="mdl-card__actions mdl-card--border">
               <a href="javascript:OtaStart();" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
-                Submit
+                提交
               </a>
             </div>
             <div id="ota_status" class="mdl-progress mdl-js-progress"></div>
@@ -382,21 +408,21 @@
 
           <div class="page page6 mdl-cell mdl-cell--12-col demo-card-square mdl-card mdl-shadow--2dp">
             <div class="mdl-card__title mdl-card--expand">
-              <h2 class="mdl-card__title-text">System Log</h2>
+              <h2 class="mdl-card__title-text">系统日志</h2>
             </div>
             <div class="sys-log mdl-card__supporting-text">
               <pre id="sys_log"></pre>
             </div>
             <div class="mdl-card__actions mdl-card--border">
               <a href="javascript:GetSysLog();" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
-                Refresh
+                刷新
               </a>
             </div>
           </div>
 
           <div class="page page7 mdl-cell mdl-cell--12-col demo-card-square mdl-card mdl-shadow--2dp">
             <div class="mdl-card__title mdl-card--expand">
-              <h2 class="mdl-card__title-text">About</h2>
+              <h2 class="mdl-card__title-text">关于</h2>
             </div>
             <div class="sys-log mdl-card__supporting-text">
               <p>
@@ -522,6 +548,30 @@ var icon_menu = "<svg><path d='M0 0h24v24H0z' fill='none'/><path d='M3 18h18v-2H
 </script>
 <script type="text/javascript" src="assets/js_pack.js"></script>
 <script>
+//语言
+var LangConfig = {
+  //菜单
+  Home: {en: "Home", cn: "主页"},
+  Config: {en: "Config", cn: "设置"},
+  TimedTask: {en: "Timed Task", cn: "定时任务"},
+  SystemStatus: {en: "System Status", cn: "系统状态"},
+  OTA: {en: "OTA", cn: "在线升级"},
+  SystemLog: {en: "System Log", cn: "系统日志"},
+  About: {en: "About", cn: "关于"},
+  //主页
+  Socket: {en: "Socket", cn: "插座"},
+}
+function ChangeLanguage(lang) {
+  if (lang == "jp") {
+    ShowToast("申し訳ありませんが、日本語はありません。");
+    return;
+  }
+  $(".lang").each(function() {
+    var key = $(this).attr("langKey");
+    var val = LangConfig[key][lang];
+    $(this).html(val);
+  });
+}
 //弹框-start
 var snackbarContainer = document.querySelector('#demo-toast-example');
 function ShowToast(mess) {
@@ -617,6 +667,7 @@ HttpGet("/status", function (re) {
   $("#info_gateway").html(status.gateway);
   $("#uptime").html(status.up_time);
 });
+$("#st-date").html((new Date()).Format("yyyy-MM-dd"));
 
 //Menu-start
 var chart_par = document.getElementById("ct-chart-par");
@@ -777,7 +828,7 @@ var chart_wth = 0;
 var p = document.getElementById("p");
 var w = document.getElementById("w");
 function GetPowerRecord() {
-  HttpGet("/power", function (re) {
+  HttpPost("/power", function (re) {
     re = re.replace(/'/g, '"');
     var power = JSON.parse(re);
     power_idx = power.idx + 1;
@@ -837,16 +888,16 @@ function GetTimedTask() {
   HttpGet("/task", function (re) {
     var tb_html = "\
     <tr>\
-      <th>Time</th>\
-      <th>Socket</th>\
-      <th>On</th>\
-      <th>Loop</th>\
-      <th>Option</th>\
+      <th>时间</th>\
+      <th>插座</th>\
+      <th>开关</th>\
+      <th>循环</th>\
+      <th>操作</th>\
     </tr>";
     console.log(re);
     var tasks = JSON.parse(re);
     if (tasks.length == 0) {
-      tb_html += "<tr><td colspan='5'>No Timed Task</td></tr>";
+      tb_html += "<tr><td colspan='5'>没有定时任务</td></tr>";
     }
     for (var i = 0; i < tasks.length; i++) {
       tb_html += "\
@@ -868,7 +919,7 @@ var task_time = document.getElementById("task_time");
 //task_date.value = "2020-12-31";
 //task_time.value = "10:08:00";
 task_date.value = (new Date()).Format("yyyy-MM-dd");
-task_time.value = (new Date()).Format("hh:mm:00");
+task_time.value = (new Date()).Format("hh:mm:ss");
 function AddTimedTask() {
   var dat = task_date.value;
   var tim = task_time.value;
@@ -883,6 +934,7 @@ function AddTimedTask() {
   var cmd = prs_time + " " + idx + " " + on + " " + wkd;
   if (cmd.length != 16) {
     alert("CMD ERROR!");
+    return
   }
   HttpPost("/task", function (re) {
     if (re != "OK") {
