@@ -36,25 +36,15 @@
 
     <!-- <script src="https://code.angularjs.org/1.4.6/angular.min.js"></script> -->
     <script src="js/angular.min.js"></script>
-
     <script>
-        /*
-        var users = [
-            {name: "张三", age: 19, signup_time: 1596798671000},
-            {name: "李四", age: 20, signup_time: 1565150520000},
-            {name: "小红", age: 18, signup_time: 1596398671000},
-        ];
-        */
         var app = angular.module('myApp', []);
         app.controller('myCtrl', function($scope, $http) {
-            //$scope.users = users;
-            //$scope.xiao_hong = $scope.users[2];
             $http.get("https://zogodo.github.io/data/users").then(function(re) {
                 $scope.users = re.data;
                 $scope.xiao_hong = $scope.users[2];
             });
             $scope.ChangeAge = function() {
-                $scope.users[2].age = Math.floor(Math.random()*100);
+                $scope.xiao_hong = Math.floor(Math.random()*100); //or $scope.users[2].age = xxx
             }
             $scope.AddUser = function() {
                 $scope.users.push({name: "王五", age: 21, signup_time: 1596798671000})
