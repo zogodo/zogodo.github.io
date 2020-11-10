@@ -14,14 +14,13 @@
     <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
     <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
     <style>
+        .project-name {
+            margin-top: 10px;
+        }
         .countdown {
-            width: 74px;
-            padding: 4px;
-            display: block;
-            margin: 10px auto;
-            text-align: center;
-            border-radius: 20px;
             border: rgb(255, 255, 255) 2px solid;
+            border-radius: 19px;
+            padding: 5px 15px;
         }
         input, button {
             padding: 5px 10px;
@@ -43,8 +42,8 @@
         <h1 class="project-name">
             <span>第 {{count}} 组</span>
         </h1>
-        <h1 class="project-name countdown">
-            <span>{{countdown}}</span>
+        <h1 class="project-name">
+            <span class="countdown">{{countdown}}</span>
         </h1>
         <h2 class="project-tagline">{{status}}</h2>
     </section>
