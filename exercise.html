@@ -18,9 +18,11 @@
             margin-top: 10px;
         }
         .countdown {
+            display: inline-block;
             border: rgb(255, 255, 255) 2px solid;
             border-radius: 19px;
             padding: 5px 15px;
+            min-width: 95px;
         }
         input, button {
             padding: 5px 10px;
@@ -43,7 +45,7 @@
             <span>第 {{count}} 组</span>
         </h1>
         <h1 class="project-name">
-            <span class="countdown">{{countdown}}</span>
+            <div class="countdown">{{countdown}}</div>
         </h1>
         <h2 class="project-tagline">{{status}}</h2>
     </section>
