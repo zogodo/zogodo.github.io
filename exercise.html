@@ -82,7 +82,7 @@
         // $("#time-top").css('background-image', 'linear-gradient(120deg, #991515, #7b1599)');
 
         $scope.count = 1;
-        $scope.countdown = $scope.perExeSec;
+        $scope.countdown = 0;
         $scope.status = "请开始";
         var stop;
         var StartCountdown = function() {
@@ -104,7 +104,15 @@
             }
         };
 
+        var started = false;
         $scope.Start = function() {
+            if (started) {
+                return;
+            }
+            started = true;
+            if ($scope.countdown == 0) {
+                $scope.countdown = $scope.perExeSec;
+            }
             if (isRest) {
                 $scope.status = "正在休息...";
                 time_top.style.backgroundImage = style_rst;
@@ -115,6 +123,7 @@
             stop = $interval(StartCountdown, 1000);
         };
         $scope.Stop = function() {
+            started = false;
             $scope.status = "暂停中...";
             $interval.cancel(stop);
         }
