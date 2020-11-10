@@ -26,10 +26,12 @@
     <section class="main-content">
         <h2>配置</h2>
         <ul>
-            <li>　　组数: <input type="number"></li>
-            <li>每组秒数: <input type="number"></li>
-            <li>每组休息: <input type="number"></li>
-            <li><button>重新开始</button>　<button>暂停</button></li>
+            <li>每组秒数: <input type="number" ng-model="perExeSec"></li>
+            <li>每组休息: <input type="number" ng-model="perRstSec"></li>
+            <li>
+                <button ng-click="Start()">开始</button>　
+                <button ng-click="Stop()">暂停</button>
+            </li>
         </ul>
         <footer class="site-footer">
                 <span class="site-footer-credits">
@@ -44,43 +46,52 @@
 <script>
     var app = angular.module('myApp', []);
     app.controller('myCtrl', function($scope, $http, $interval) {
-        var totalCount = 3;
-        var perCountSec = 6;
-        var perRestSec = 4;
+        $scope.perExeSec = 6;
+        $scope.perRstSec = 4;
         var isRest = false;
         var time_top = document.getElementById("time-top");
         var style_exe = "linear-gradient(120deg, #991515, #7b1599)";
         var style_rst = "linear-gradient(120deg, #155799, #159957)";
-        time_top.style.backgroundImage = style_exe;
         // $("#time-top").css('background-image', 'linear-gradient(120deg, #991515, #7b1599)');
 
         $scope.count = 1;
-        $scope.countdown = perCountSec;
-        $scope.status = "正在运动...";
-        var stop = $interval(function() {
+        $scope.countdown = $scope.perExeSec;
+        $scope.status = "请开始";
+        var stop;
+        var StartCountdown = function() {
             $scope.countdown--;
             if ($scope.countdown >= 0) {
                 return;
             }
             if (isRest) {
                 $scope.count++;
-                $scope.countdown = perCountSec;
+                $scope.countdown = $scope.perExeSec;
                 $scope.status = "正在运动...";
                 time_top.style.backgroundImage = style_exe;
                 isRest = false;
             } else {
                 time_top.style.backgroundImage = style_rst;
-                if ($scope.count >= totalCount) {
-                    $scope.countdown = 0;
-                    $scope.status = "运动结束.";
-                    $interval.cancel(stop);
-                    return;
-                }
-                $scope.countdown = perRestSec;
+                $scope.countdown = $scope.perRstSec;
                 $scope.status = "正在休息...";
                 isRest = true;
             }
-        }, 1000);
+        };
+
+        $scope.Start = function() {
+            if (isRest) {
+                $scope.status = "正在休息...";
+                time_top.style.backgroundImage = style_rst;
+            } else {
+                $scope.status = "正在运动...";
+                time_top.style.backgroundImage = style_exe;
+            }
+            stop = $interval(StartCountdown, 1000);
+        };
+        $scope.Stop = function() {
+            $scope.status = "暂停中...";
+            $interval.cancel(stop);
+        }
+
     });
 </script>
 </html>
