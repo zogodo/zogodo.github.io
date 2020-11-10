@@ -13,11 +13,24 @@
     <link rel="stylesheet" type="text/css" href="stylesheets/googleapis.css" media="screen">
     <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
     <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+    <style>
+        .countdown {
+            display: block;
+            border: rgb(255, 255, 255) 2px solid;
+            border-radius: 19px;
+            padding: 4px;
+            width: 74px;
+            text-align: center;
+            margin: 10px auto;
+        }
+    </style>
 </head>
 <body ng-app="myApp" ng-controller="myCtrl">
     <section class="page-header" id="time-top">
         <h1 class="project-name">
-            <span>第 {{count}} 组　</span>
+            <span>第 {{count}} 组</span>
+        </h1>
+        <h1 class="project-name countdown">
             <span>{{countdown}}</span>
         </h1>
         <h2 class="project-tagline">{{status}}</h2>
@@ -46,8 +59,8 @@
 <script>
     var app = angular.module('myApp', []);
     app.controller('myCtrl', function($scope, $http, $interval) {
-        $scope.perExeSec = 6;
-        $scope.perRstSec = 4;
+        $scope.perExeSec = 50;
+        $scope.perRstSec = 60;
         var isRest = false;
         var time_top = document.getElementById("time-top");
         var style_exe = "linear-gradient(120deg, #991515, #7b1599)";
