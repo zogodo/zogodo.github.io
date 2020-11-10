@@ -15,7 +15,7 @@
     <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
 </head>
 <body ng-app="myApp" ng-controller="myCtrl">
-    <section class="page-header">
+    <section class="page-header" id="time-top">
         <h1 class="project-name">
             <span>第 {{count}} 组　</span>
             <span>{{countdown}}</span>
@@ -48,6 +48,11 @@
         var perCountSec = 6;
         var perRestSec = 4;
         var isRest = false;
+        var time_top = document.getElementById("time-top");
+        var style_exe = "linear-gradient(120deg, #991515, #7b1599)";
+        var style_rst = "linear-gradient(120deg, #155799, #159957)";
+        time_top.style.backgroundImage = style_exe;
+        // $("#time-top").css('background-image', 'linear-gradient(120deg, #991515, #7b1599)');
 
         $scope.count = 1;
         $scope.countdown = perCountSec;
@@ -61,9 +66,12 @@
                 $scope.count++;
                 $scope.countdown = perCountSec;
                 $scope.status = "正在运动...";
+                time_top.style.backgroundImage = style_exe;
                 isRest = false;
             } else {
+                time_top.style.backgroundImage = style_rst;
                 if ($scope.count >= totalCount) {
+                    $scope.countdown = 0;
                     $scope.status = "运动结束.";
                     $interval.cancel(stop);
                     return;
