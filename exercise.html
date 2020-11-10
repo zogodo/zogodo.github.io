@@ -15,13 +15,26 @@
     <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
     <style>
         .countdown {
-            display: block;
-            border: rgb(255, 255, 255) 2px solid;
-            border-radius: 19px;
-            padding: 4px;
             width: 74px;
-            text-align: center;
+            padding: 4px;
+            display: block;
             margin: 10px auto;
+            text-align: center;
+            border-radius: 20px;
+            border: rgb(255, 255, 255) 2px solid;
+        }
+        input, button {
+            padding: 5px 10px;
+            text-align: center;
+            border-radius: 5px;
+        }
+        input {
+            border-color: black;
+            border-width: 1px;
+        }
+        button {
+            color: white;
+            border: none;
         }
     </style>
 </head>
@@ -39,11 +52,11 @@
     <section class="main-content">
         <h2>配置</h2>
         <ul>
-            <li>每组秒数: <input type="number" ng-model="perExeSec"></li>
-            <li>每组休息: <input type="number" ng-model="perRstSec"></li>
+            <li>每组秒数　<input type="number" ng-model="perExeSec"></li>
+            <li>每组休息　<input type="number" ng-model="perRstSec"></li>
             <li>
-                <button ng-click="Start()">开始</button>　
-                <button ng-click="Stop()">暂停</button>
+                <button ng-click="Start()" style="background-color:#159957;">开始</button>　
+                <button ng-click="Stop()"  style="background-color:#155799;">暂停</button>
             </li>
         </ul>
         <footer class="site-footer">
