@@ -104,15 +104,15 @@
             }
         };
 
-        var started = false;
+        var started = 0; //0没开始 1正在运行 2暂停
         $scope.Start = function() {
-            if (started) {
+            if (started == 1) {
                 return;
             }
-            started = true;
-            if ($scope.countdown == 0) {
+            if (started == 0) {
                 $scope.countdown = $scope.perExeSec;
             }
+            started = 1;
             if (isRest) {
                 $scope.status = "正在休息...";
                 time_top.style.backgroundImage = style_rst;
@@ -123,7 +123,7 @@
             stop = $interval(StartCountdown, 1000);
         };
         $scope.Stop = function() {
-            started = false;
+            started = 2;
             $scope.status = "暂停中...";
             $interval.cancel(stop);
         }
