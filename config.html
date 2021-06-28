@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+.hide {
+    display: none;
+}
+.show {
+    display: block;
+}
+li {
+    padding: 10px;
+}
+select {
+    padding: 5px 10px;
+}
+pre {
+    width: 350px;
+    padding: 10px;
+    border: black solid 1px;
+    position: absolute;
+    left: 380px;
+    top: 0;
+    line-height: 1.5rem;
+}
+ul {
+    display: none;
+}
+#first-ul {
+    display: block;
+}
+</style>
+</head>
+<body>
+
+<ul id="first-ul">
+    <li>
+        <span>CONFIG_1</span>
+        <select>
+            <option value="1">123 (has children)</option>
+            <option value="2">456 (has children)</option>
+            <option value="0">789</option>
+        </select>
+        <ul>
+            <li>
+                <span>CONFIG_1.1</span>
+                <select>
+                    <option value="0">123</option>
+                    <option value="0">456</option>
+                    <option value="0">789</option>
+                </select>
+            </li>
+            <li>
+                <span>CONFIG_1.2</span>
+                <select>
+                    <option value="0">123</option>
+                    <option value="0">456</option>
+                    <option value="0">789</option>
+                </select>
+            </li>
+        </ul>
+        <ul>
+            <li>
+                <span>CONFIG_1.1-2</span>
+                <select>
+                    <option value="0">123-2</option>
+                    <option value="0">456-2</option>
+                    <option value="0">789-2</option>
+                </select>
+            </li>
+            <li>
+                <span>CONFIG_1.2-2</span>
+                <select>
+                    <option value="0">123-2</option>
+                    <option value="0">456-2</option>
+                    <option value="0">789-2</option>
+                </select>
+            </li>
+        </ul>
+    </li>
+    <li>
+        <span>CONFIG_2</span>
+        <select>
+            <option value="1">123 (has children)</option>
+            <option value="0">456</option>
+            <option value="0">789</option>
+        </select>
+        <ul>
+            <li>
+                <span>CONFIG_2.1</span>
+                <select>
+                    <option value="0">123</option>
+                    <option value="0">456</option>
+                    <option value="0">789</option>
+                </select>
+            </li>
+            <li>
+                <span>CONFIG_2.2</span>
+                <select>
+                    <option value="1">123 (has children)</option>
+                    <option value="0">456</option>
+                    <option value="0">789</option>
+                </select>
+                <ul>
+                    <li>
+                        <span>CONFIG_2.2.1</span>
+                        <select>
+                            <option value="0">123</option>
+                            <option value="0">456</option>
+                            <option value="0">789</option>
+                        </select>
+                    </li>
+                    <li>
+                        <span>CONFIG_2.2.1</span>
+                        <select>
+                            <option value="0">123</option>
+                            <option value="0">456</option>
+                            <option value="0">789</option>
+                        </select>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </li>
+</ul>
+
+<pre id="config"></pre>
+
+<script>
+
+function SetUl(ul) {
+    for (var i = 0; i < ul.children.length; i++) {
+        var slct = ul.children[i].children[1];
+        slct.classList.add("set");
+        if (slct.value != "0") {
+            var idx = parseInt(slct.value) + 1;
+            SetUl(ul.children[i].children[idx]);
+        }
+    }
+}
+SetUl(document.getElementById("first-ul"));
+
+function RmSet(el) {
+    var slcts = el.getElementsByTagName("select");
+    for (var i = 0; i < slcts.length; i++) {
+        slcts[i].classList.remove("set");
+    }
+}
+
+var spans = document.getElementsByTagName("span");
+for (var i = 0; i < spans.length; i++) {
+    spans[i].addEventListener("click", function() {
+        var nextSelect = this.nextElementSibling;
+        if (nextSelect.value == "0") {
+            return;
+        }
+        var brothers = nextSelect.parentElement.children;
+        var idx = parseInt(nextSelect.value) + 1;
+        var childOption = brothers[idx];
+        if (childOption.offsetParent == null) {
+            childOption.className = "show";
+        } else {
+            childOption.className = "hide";
+        }
+    });
+}
+
+var selects = document.getElementsByTagName("select");
+for (var i = 0; i < selects.length; i++) {
+    var previousVal = "0";
+    selects[i].addEventListener("click", function() {
+        previousVal = parseInt(this.value) + 1;
+        console.log(previousVal);
+    })
+    selects[i].addEventListener("change", function() {
+        if (this.nextElementSibling == null) {
+            SetConfig();
+            return;
+        }
+        var brothers = this.parentElement.children;
+        if (previousVal >= 2) {
+            brothers[previousVal].classList.remove("show");
+            RmSet(brothers[previousVal]);
+        }
+        if (this.value != "0") {
+            var idx = parseInt(this.value) + 1;
+            //brothers[idx].classList.add("show");
+            SetUl(brothers[idx]);
+        }
+        SetConfig();
+    });
+}
+
+var config = document.getElementById("config");
+function SetConfig() {
+    var text = "";
+    for (var i = 0; i < selects.length; i++) {
+        //判断是否在显示: selects[i].offsetParent == null
+        if (!selects[i].className.includes("set")) {
+            continue;
+        }
+        text += selects[i].previousElementSibling.innerHTML + " = "
+                 + selects[i].options[selects[i].selectedIndex].text + "\n";
+    }
+    config.innerHTML = text;
+}
+SetConfig();
+</script>
+
+</body>
+</html>
