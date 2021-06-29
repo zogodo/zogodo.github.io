@@ -3,11 +3,20 @@
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
-.hide {
-    display: none;
-}
 .show {
     display: block;
+}
+table {
+    margin: auto;
+    width: 800px;
+    min-height: 500px;
+    border-collapse: collapse;
+}
+td, th {
+    width: 50%;
+    padding: 10px;
+    vertical-align: top;
+    border: 1px solid #000;
 }
 li {
     padding: 10px;
@@ -15,7 +24,7 @@ li {
 select {
     padding: 5px 10px;
 }
-pre {
+.pre {
     width: 350px;
     padding: 10px;
     border: black solid 1px;
@@ -48,108 +57,116 @@ span::before {
   display: inline-block;
   margin-right: 6px;
 }
-
 .caret-down::before {
   -ms-transform: rotate(90deg); /* IE 9 */
-  -webkit-transform: rotate(90deg); /* Safari */'
+  -webkit-transform: rotate(90deg); /* Safari */
   transform: rotate(90deg);  
 }
 </style>
 </head>
 <body>
 
-<ul id="first-ul">
-    <li>
-        <span class="caret">CONFIG_1</span>
-        <select>
-            <option value="1">123 (has children)</option>
-            <option value="2">456 (has children)</option>
-            <option value="0">789</option>
-        </select>
-        <ul>
-            <li>
-                <span>CONFIG_1.1</span>
-                <select>
-                    <option value="0">123</option>
-                    <option value="0">456</option>
-                    <option value="0">789</option>
-                </select>
-            </li>
-            <li>
-                <span>CONFIG_1.2</span>
-                <select>
-                    <option value="0">123</option>
-                    <option value="0">456</option>
-                    <option value="0">789</option>
-                </select>
-            </li>
-        </ul>
-        <ul>
-            <li>
-                <span>CONFIG_1.1-2</span>
-                <select>
-                    <option value="0">123-2</option>
-                    <option value="0">456-2</option>
-                    <option value="0">789-2</option>
-                </select>
-            </li>
-            <li>
-                <span>CONFIG_1.2-2</span>
-                <select>
-                    <option value="0">123-2</option>
-                    <option value="0">456-2</option>
-                    <option value="0">789-2</option>
-                </select>
-            </li>
-        </ul>
-    </li>
-    <li>
-        <span class="caret">CONFIG_2</span>
-        <select>
-            <option value="1">123 (has children)</option>
-            <option value="0">456</option>
-            <option value="0">789</option>
-        </select>
-        <ul>
-            <li>
-                <span>CONFIG_2.1</span>
-                <select>
-                    <option value="0">123</option>
-                    <option value="0">456</option>
-                    <option value="0">789</option>
-                </select>
-            </li>
-            <li>
-                <span class="caret">CONFIG_2.2</span>
-                <select>
-                    <option value="1">123 (has children)</option>
-                    <option value="0">456</option>
-                    <option value="0">789</option>
-                </select>
-                <ul>
-                    <li>
-                        <span>CONFIG_2.2.1</span>
-                        <select>
-                            <option value="0">123</option>
-                            <option value="0">456</option>
-                            <option value="0">789</option>
-                        </select>
-                    </li>
-                    <li>
-                        <span>CONFIG_2.2.1</span>
-                        <select>
-                            <option value="0">123</option>
-                            <option value="0">456</option>
-                            <option value="0">789</option>
-                        </select>
-                    </li>
-                </ul>
-            </li>
-        </ul>
-    </li>
-</ul>
+<table>
+    <tr>
+        <td>
+            <ul id="first-ul">
+                <li>
+                    <span class="caret">CONFIG_1</span>
+                    <select>
+                        <option value="1">123 - children</option>
+                        <option value="2">456 - children</option>
+                        <option value="0">789</option>
+                    </select>
+                    <ul>
+                        <li>
+                            <span>CONFIG_1.1</span>
+                            <select>
+                                <option value="0">123</option>
+                                <option value="0">456</option>
+                                <option value="0">789</option>
+                            </select>
+                        </li>
+                        <li>
+                            <span>CONFIG_1.2</span>
+                            <select>
+                                <option value="0">123</option>
+                                <option value="0">456</option>
+                                <option value="0">789</option>
+                            </select>
+                        </li>
+                    </ul>
+                    <ul>
+                        <li>
+                            <span>CONFIG_1.1-2</span>
+                            <select>
+                                <option value="0">123-2</option>
+                                <option value="0">456-2</option>
+                                <option value="0">789-2</option>
+                            </select>
+                        </li>
+                        <li>
+                            <span>CONFIG_1.2-2</span>
+                            <select>
+                                <option value="0">123-2</option>
+                                <option value="0">456-2</option>
+                                <option value="0">789-2</option>
+                            </select>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <span class="caret">CONFIG_2</span>
+                    <select>
+                        <option value="1">123 - children</option>
+                        <option value="0">456</option>
+                        <option value="0">789</option>
+                    </select>
+                    <ul>
+                        <li>
+                            <span>CONFIG_2.1</span>
+                            <select>
+                                <option value="0">123</option>
+                                <option value="0">456</option>
+                                <option value="0">789</option>
+                            </select>
+                        </li>
+                        <li>
+                            <span class="caret">CONFIG_2.2</span>
+                            <select>
+                                <option value="1">123 - children</option>
+                                <option value="0">456</option>
+                                <option value="0">789</option>
+                            </select>
+                            <ul>
+                                <li>
+                                    <span>CONFIG_2.2.1</span>
+                                    <select>
+                                        <option value="0">123</option>
+                                        <option value="0">456</option>
+                                        <option value="0">789</option>
+                                    </select>
+                                </li>
+                                <li>
+                                    <span>CONFIG_2.2.1</span>
+                                    <select>
+                                        <option value="0">123</option>
+                                        <option value="0">456</option>
+                                        <option value="0">789</option>
+                                    </select>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </td>
+        <td>
+            <pre id="config"></pre>
+        </td>
+    </tr>
+</table>
 
-<pre id="config"></pre>
+
 
 <script>
 
