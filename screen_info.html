@@ -1,0 +1,27 @@
+﻿<html>
+<head>
+    <title>屏幕信息</title>
+    <style type="text/css">
+    html, body { padding: 0; margin: 0; }
+    pre { height: 200px; width: 400px; border: red solid 1px; }
+    </style>
+</head>
+<body>
+    <pre id="screen_info"></pre>
+    <script language="javascript">
+        function screenInfo() {
+            var info = "200 x 400\r\n";
+            info += "\r\n网页可见区域 长 X 高：" + document.body.clientWidth + " x " + document.body.clientHeight;
+            info += "\r\n网页可见区域 长 X 高：" + document.body.offsetWidth + " x " + document.body.offsetHeight + " (包括边线的宽)";
+            info += "\r\n网页正文全文 长 X 高：" + document.body.scrollWidth + " x " + document.body.scrollHeight;
+            info += "\r\n网页被卷去的 高 X 左：" + document.body.scrollTop + " x " + document.body.scrollLeft;
+            info += "\r\n网页正文部分 上 X 左：" + window.screenTop + " x " + window.screenLeft;
+            info += "\r\n屏幕分辨率长 X 高：" + window.screen.height + " x " + window.screen.width;
+            info += "\r\n屏幕可用工作区 长 X 高：" + window.screen.availHeight + " x " + window.screen.availWidth;
+            screen_info.innerHTML = info;
+        }
+        screenInfo();
+        window.onresize = screenInfo;
+    </script>
+</body>
+</html>
