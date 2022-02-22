@@ -178,6 +178,7 @@ a {
   .main-content blockquote > :last-child {
     margin-bottom: 0; }
 .main-content table {
+  border-collapse: collapse;
   display: block;
   width: 100%;
   overflow: auto;
