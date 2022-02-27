@@ -13,9 +13,15 @@ function WriteMd(elm, text) {
     //var text = '# hello, markdown!';
     var html = converter.makeHtml(text);
     elm.innerHTML = html;
+    var codes = document.querySelectorAll("pre code");
+    for (var i in codes) {
+        hljs.highlightBlock(codes[i]);
+    }
+    /*
     $('pre code').each(function(i, block) {
         hljs.highlightBlock(block);
     });
+    */
 }
 
 function getCookie(cname) {
