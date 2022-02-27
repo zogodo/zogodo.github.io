@@ -1,0 +1,116 @@
+<html>
+  <head>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {
+        'packages':['geochart'],
+        // Note: you will need to get a mapsApiKey for your project.
+        // See: https://developers.google.com/chart/interactive/docs/basic_load_libs#load-settings
+        'mapsApiKey': 'AIzaSyBDL887luhgpLxCZpgiP6beyh1zA5d8c0c'
+      });
+      google.charts.setOnLoadCallback(drawRegionsMap);
+
+      function drawRegionsMap() {
+        var data = google.visualization.arrayToDataTable([
+          ['Country',    'Popularity'],
+
+          ['China',          100], //中国 or CN
+          ['Taiwan',         575], //中国 or CN
+          ['Japan',          300], //日本
+          ['South Korea',    200], //韩国 or KR
+          ['Singapore',      100], //新加坡
+          ['Vietnam',        600], //越南
+          ['Thailand',       400], //泰国
+          ['India',          200], //印度
+
+          ['US',             300], //美国 or US
+          ['Canada',         500], //加拿大
+          ['Australia',      500], //澳大利亚 or AU
+          ['Brazil',         400], //巴西
+
+          ['United Kingdom', 450], //英国
+          ['Germany',        200], //德国
+          ['Italy',          400], //意大利 or IT
+          ['France',         300], //法国
+          ['Turkey',         150], //土耳其
+
+          ['Egypt',          300], //埃及
+          ['Russia',         600], //俄罗斯 or RU
+
+          ['Israel',         700], //以色列
+
+          ['Ukraine',        700], //乌克兰
+
+        ]);
+
+        // var options = {};
+        var options = {
+          // region: '145', // Western Asia
+          // region: '035', // 东南亚
+          // region: 'CN', // China ISO_3166-1
+          colorAxis: {colors: ['red', 'yellow', 'lime', 'aqua', 'blue', 'fuchsia', 'red']},
+          // colorAxis: {colors: ['#ff0000', 'ffff00', '00ff00', '#00ffff', '#0000ff', '#ff00ff', '#ff0000']},
+          backgroundColor: '#aadaff',
+          // datalessRegionColor: '#f8bbd0',
+          defaultColor: '#f5f5f5',
+        };
+        var region = localStorage.getItem("GoogleMapRegion");
+        if (region && region != "") {
+          RegionSel.value = region;
+          options.region = region;
+        }
+
+        var chart = new google.visualization.GeoChart(document.getElementById('regions_div'));
+
+        chart.draw(data, options);
+      }
+      function ChangeMap(region) {
+        localStorage.setItem("GoogleMapRegion", region);
+        drawRegionsMap();
+      }
+    </script>
+    <style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #regions_div {
+        height: 100%;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      select {
+        position: absolute;
+        top: 0;
+        right: 0;
+        padding: 5px;
+        z-index: 1;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- UNSD https://unstats.un.org/unsd/methodology/m49/overview/ -->
+    <select id="RegionSel" onchange="ChangeMap(this.value);">
+      <option value="">全世界</option>
+      <option value="142">亚洲</option>
+      <option value="150">欧洲</option>
+      <option value="021">北美洲</option>
+      <option value="005">南美洲</option>
+      <option value="002">非洲</option>
+      <option value="009">大洋洲</option>
+      <option value="009">南极洲</option>
+
+      <option value="155">西欧</option>
+      <option value="019">美洲</option>
+      <option value="013">中美洲</option>
+      <option value="035">东南亚</option>
+      <option value="145">西亚</option>
+      <option value="143">中亚</option>
+
+      <option value="CN">中国</option>
+    </select>
+    <div id="regions_div"></div>
+  </body>
+</html>
