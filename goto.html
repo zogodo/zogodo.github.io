@@ -32,7 +32,7 @@
 <body>
 
     <section class="main-content">
-            <input id="url" value="https://www.youtube.com" placeholder="URL" />
+            <input id="url" value="https://www.youtube.com" placeholder="URL" onclick="SelectAll()" />
             <br/>
             <br/>
             <button onclick="Goto()" style="background-color:#159957;">Go to</button>　
@@ -46,6 +46,10 @@
     </section>
 </body>
 <script>
+    function SelectAll() {
+        url.selectionStart = 0;
+        url.selectionEnd = url.value.length;
+    }
     function Goto() {
         if (!url.value.startsWith("http")) {
             url.value = "http://" + url.value;
