@@ -32,10 +32,10 @@
 <body>
 
     <section class="main-content">
-            <input id="url" value="https://www.youtube.com" placeholder="URL" onclick="SelectAll()" />
+            <input id="url" value="https://m.youtube.com" placeholder="URL" onclick="SelectAll()" onkeypress="event.which==13?Goto():0"/>
             <br/>
             <br/>
-            <button onclick="Goto()" style="background-color:#159957;">Go to</button>　
+            <button onclick="Goto()" style="background-color:#159957;">Go to</button>
         <footer class="site-footer">
             <span class="site-footer-credits">
                 Copyright © 2022
@@ -44,7 +44,12 @@
     </section>
 </body>
 <script>
+    var first = true;
     function SelectAll() {
+        if (!first) {
+            return
+        }
+        first = false;
         url.selectionStart = 0;
         url.selectionEnd = url.value.length;
     }
