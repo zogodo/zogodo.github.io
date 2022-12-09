@@ -15,3 +15,46 @@
 顾客们就库克的讲话达成了广泛的共识，并承认世界上只有iOS最流畅，要紧紧的团结在以库克先生为首席执行官的苹果公司集体周围，一心一意抓学习，聚精会神谋发展。
 
 帕洛阿尔托苹果专卖店当日原则通过《蒂姆·库克首席执行官在加州新苹果店的讲话纪要》，并下发各分店认真学习、研讨。
+
+# 测试图表
+
+```mermaid
+sequenceDiagram
+%% 设置显示消息的自动编号
+autonumber
+
+participant User as @人物角色
+participant Client as 系统角色
+participant Server as **重要系统角色
+participant Extend as --外部系统角色
+
+par 平行消息
+	User ->> Client: 平行发送消息1
+and
+	User ->> Client: 平行发送消息2
+and
+  Client ->>+ Server: 平行发送消息3
+  Server -->>- Client: 发送消息
+end
+
+%% 设置区域高亮
+rect rgba(128, 128, 128, 0.3)
+	Extend ->> Extend: 内部动作
+end
+
+Note left of Extend: 显示在外部系统<br />左侧备注说明
+Note right of Extend: 显示在外部系统<br />右侧备注说明
+Note over Client,Server: 跨对象备注说明
+loop 循环
+	Client ->>+ Extend: 发送消息A
+	alt 抉择1
+		Server -->> Client: 同步返回消息A1
+	else 抉择2
+		Server --X Client: 异步返回消息A2
+	end
+	opt 可选
+		Extend ->>- Server: 发送消息X
+	end
+end
+```
+
