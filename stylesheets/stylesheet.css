@@ -257,13 +257,17 @@ a {
     font-size: 0.9rem; } }
 
 #menu {
-    top: 0;
+    padding: 2rem;
+    padding-right: 0;
     position: fixed;
-    padding-left: 2rem;
     line-height: 1.8rem;
     height: 100%;
-    overflow-y: scroll;
+    overflow-y: auto;
+    overflow-x: hidden;
     width: 18rem;
+}
+#menu a {
+    white-space: nowrap;
 }
 #menu .H2 {
     margin-left: 15px;
