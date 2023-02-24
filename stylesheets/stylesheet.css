@@ -252,3 +252,25 @@ a {
 @media screen and (max-width: 42em) {
   .site-footer {
     font-size: 0.9rem; } }
+
+#menu {
+    top: 10%;
+    position: fixed;
+    padding-left: 2rem;
+    line-height: 1.8rem;
+}
+#menu .H2 {
+    margin-left: 15px;
+}
+#menu .H3 {
+    margin-left: 30px;
+}
+#menu .H4 {
+    margin-left: 45px;
+}
+#menu .H5 {
+    margin-left: 60px;
+}
+#menu .H6 {
+    margin-left: 75px;
+}

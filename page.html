@@ -23,6 +23,7 @@
     </section>
 
     <section class="main-content">
+        <div id="menu"></div>
         <div id="content">
             <div id="cnt_div">{{content}}</div>
         </div>
@@ -67,6 +68,12 @@
         $http.get(url).then(function(re) {
             $scope.content = re.data;
             WriteMd(cnt_div, $scope.content);
+            var hs = document.querySelectorAll("h1,h2,h3,h4,h5,h6");
+            var menus = "";
+            for (var i = 0; i < hs.length; i++) {
+                menus += `<a href='#${hs[i].id}' class='${hs[i].tagName}'>${hs[i].innerHTML}</a><br/>`;
+            }
+            document.getElementById("menu").innerHTML = menus;
         }, function(re) {
             $scope.content = "# 101 + 101 + 101 + 101 = 404\n```cpp\nint a = 404;\n```\n";
             WriteMd(cnt_div, $scope.content);
