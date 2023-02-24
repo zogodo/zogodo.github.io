@@ -116,6 +116,9 @@ a {
   font-weight: normal;
   color: #159957; }
 .main-content p {
+  /* line-break: anywhere; */
+  /* word-break: break-all;  */ /* 本行不够直接截断最后一个单词 */
+  word-wrap: break-word;        /* 本行不够,先试试把最后一个单词移到下一行,还不够的话才截断最后一个单词 */
   margin-bottom: 1em; }
 .main-content code {
   padding: 2px 4px;
@@ -223,8 +226,9 @@ a {
     padding: 2rem 1rem;
     font-size: 1rem; } }
 .main-content li {
-  padding-bottom: 10px;}
-
+  padding-bottom: 10px;
+  word-wrap: break-word;
+}
 .site-footer {
   padding-top: 2rem;
   margin-top: 2rem;
