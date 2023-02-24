@@ -17,13 +17,9 @@
     <link rel="stylesheet" href="highlight/github-gist.css"> <!-- md to html 代码高亮补丁 -->
 </head>
 <body ng-app="myApp" ng-controller="myCtrl">
-    <section class="page-header">
-        <h1 class="project-name"><a href="https://zogodo.github.io">果冻 の Blog</a></h1>
-        <h2 class="project-tagline"><a target="_blank" href="https://github.com/zogodo">@zogodo</a></h2>
-    </section>
+    <div id="menu"></div>
 
     <section class="main-content">
-        <div id="menu"></div>
         <div id="content">
             <div id="cnt_div">{{content}}</div>
         </div>
@@ -68,15 +64,11 @@
         $http.get(url).then(function(re) {
             $scope.content = re.data;
             WriteMd(cnt_div, $scope.content);
-            var hs = document.querySelectorAll("h1,h2,h3,h4,h5,h6");
-            var menus = "";
-            for (var i = 0; i < hs.length; i++) {
-                menus += `<a href='#${hs[i].id}' class='${hs[i].tagName}'>${hs[i].innerHTML}</a><br/>`;
-            }
-            document.getElementById("menu").innerHTML = menus;
+            WriteMenu();
         }, function(re) {
             $scope.content = "# 101 + 101 + 101 + 101 = 404\n```cpp\nint a = 404;\n```\n";
             WriteMd(cnt_div, $scope.content);
+            WriteMenu();
         });
         $scope.ParseTime = function (timeStr) {
             return Date.parse(timeStr);
@@ -86,6 +78,14 @@
             return path.substring(52);
         }
     });
+    function WriteMenu() {
+        var hs = content.querySelectorAll("h1,h2,h3,h4,h5,h6");
+        var menus = "";
+        for (var i = 0; i < hs.length; i++) {
+            menus += `<a href='#${hs[i].id}' class='${hs[i].tagName}'>${hs[i].innerHTML}</a><br/>`;
+        }
+        document.getElementById("menu").innerHTML = menus;
+    }
     const gitalk = new Gitalk({
         clientID: 'aed518bcf2b6a0edd12c',
         clientSecret: '59243b048303e8628864cae9d521699b4b579548',

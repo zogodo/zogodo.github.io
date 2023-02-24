@@ -14,7 +14,7 @@ function WriteMd(elm, text) {
     var html = converter.makeHtml(text);
     elm.innerHTML = html;
     var codes = document.querySelectorAll("pre code");
-    for (var i in codes) {
+    for (var i = 0; i < codes.length; i++) {
         hljs.highlightBlock(codes[i]);
     }
     /*

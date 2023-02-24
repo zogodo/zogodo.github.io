@@ -211,12 +211,15 @@ a {
 
 @media screen and (min-width: 64em) {
   .main-content {
-    max-width: 64rem;
-    padding: 2rem 6rem;
+    max-width: 80rem;
+    padding: 2rem;
+    padding-left: 20rem;
     margin: 0 auto;
     font-size: 1.1rem; } }
 
 @media screen and (min-width: 42em) and (max-width: 64em) {
+  #menu {
+    display: none; }
   .main-content {
     padding: 2rem 4rem;
     font-size: 1.1rem; } }
@@ -254,10 +257,13 @@ a {
     font-size: 0.9rem; } }
 
 #menu {
-    top: 10%;
+    top: 0;
     position: fixed;
     padding-left: 2rem;
     line-height: 1.8rem;
+    height: 100%;
+    overflow-y: scroll;
+    width: 18rem;
 }
 #menu .H2 {
     margin-left: 15px;
