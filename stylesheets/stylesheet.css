@@ -225,6 +225,8 @@ a {
     font-size: 1.1rem; } }
 
 @media screen and (max-width: 42em) {
+  #menu {
+    display: none; }
   .main-content {
     padding: 2rem 1rem;
     font-size: 1rem; } }
