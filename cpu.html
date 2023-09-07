@@ -7,6 +7,10 @@
     body {
         margin: 0;
         padding: 0;
+        cursor: grab;
+    }
+    body:active {
+        cursor: grabbing;
     }
     div {
         border: red solid 2px;
@@ -26,6 +30,27 @@
     <div title="MSI" style="left: 1565px; top: 1586px;"></div>
     <div title="zHP" style="left: 2160px; top: 1934px;"></div>
     <div title="baby (some as AMD A12-9700P)" style="left: 2160px; top: 2498px;"></div>
-    <img src="img/20190101.png">
+    <img src="img/20190101.png" id="cpu_img">
 </body>
+<script>
+const el = document.getElementById('cpu_img');
+document.getElementsByTagName('body')[0].ondragstart = function () {
+    window.event.returnValue = false;
+    return false;
+};
+el.onmousedown = function(e) {
+    const OE = e || event;
+    const nowX = window.scrollX;
+    const nowY = window.scrollY;
+    document.onmousemove = function (e) {
+        const left = OE.clientX - e.clientX + nowX;
+        const top = OE.clientY - e.clientY + nowY;
+        window.scrollTo(left, top);
+    };
+}
+document.onmouseup = function (e) {
+    document.onmousedown = null;
+    document.onmousemove = null;
+};
+</script>
 </html>
