@@ -1,0 +1,39 @@
+<html>
+<style>
+#img {
+    position: absolute;
+}
+</style>
+<body>
+    <div id="app">
+      <img id="img" src="img/20190101.png">
+    </div>
+</body>
+<script>
+/*先实现拖拽功能*/
+const el = document.getElementById('img');
+document.getElementsByTagName('body')[0].ondragstart = function () {
+    window.event.returnValue = false;
+    return false;
+};
+el.onmousedown = function(e) {
+    //先计算出鼠标按下那一刻，鼠标在图片上的位置
+    const OE = e || event;
+    const disX = OE.clientX - el.offsetLeft;
+    const disY = OE.clientY - el.offsetTop;
+    document.onmousemove = function (e) {
+        //鼠标移动的时候，动态设置图片的left和top的值来达到图片跟着鼠标移动的效果
+        const left = e.clientX - disX;
+        const top = e.clientY - disY;
+        el.style.left = left + 'px';
+        el.style.top = top + 'px';
+    };
+}
+document.onmouseup = function (e) {
+    // 鼠标放开事件
+    document.onmousedown = null;
+    document.onmousemove = null;
+};
+</script>
+
+</html>
