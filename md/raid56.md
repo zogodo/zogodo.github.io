@@ -66,8 +66,6 @@ Raid6 也称 Raid-z2, 至少需要 4 块硬盘组成, 可以在任意丢失 2 �
 
 4. 比如盘2和盘3丢失, 此时丢失数据 <b style="color:red">B</b>, <b style="color:blue">C</b>, 通过一下方法找回:
 
-   - B⊕D = A ⊕ (D⊕A⊕B)    `利用盘1和盘4`
-   - <b style="color:red">B</b> = (B⊕D) ⊕ D               `此时还原出B`
-   - B⊕C = A ⊕ (A⊕B⊕C)     `利用盘1`
-   - <b style="color:blue">C</b> = (B⊕C) ⊕ B                `此时还原出C`
+   - <b style="color:red">B</b> = A ⊕ D ⊕ (D⊕A⊕B)    `利用盘1和盘4`
+   - <b style="color:blue">C</b> = A ⊕ B ⊕ (A⊕B⊕C)     `此时还原出C`
 
