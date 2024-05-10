@@ -1,4 +1,4 @@
-# Raid6 和 Raid6 工作原理
+# Raid5 和 Raid6 工作原理
 
 ## 异或算法
 
