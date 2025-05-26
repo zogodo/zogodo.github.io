@@ -1,6 +1,6 @@
 # 哑铃卧推
 
-<video width="320" height="240" controls>
+<video width="100%" controls>
     <source src="video/哑铃卧推.mp4" type="video/mp4">
 </video>
 
