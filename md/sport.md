@@ -1,7 +1,7 @@
 # 哑铃卧推
 
-![哑铃卧推](../video/哑铃卧推.mp4)
+<video src="../video/哑铃卧推.mp4"></video>
 
 # 哑铃飞鸟
 
-![哑铃飞鸟](../video/哑铃飞鸟.mp4)
+<video src="../video/哑铃飞鸟.mp4"></video>
