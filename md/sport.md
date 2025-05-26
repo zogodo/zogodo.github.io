@@ -1,7 +1,11 @@
 # 哑铃卧推
 
-<video src="video/哑铃卧推.mp4"></video>
+<video width="320" height="240" controls>
+    <source src="video/哑铃卧推.mp4" type="video/mp4">
+</video>
 
 # 哑铃飞鸟
 
-<video src="video/哑铃飞鸟.mp4"></video>
+<video width="100%" controls>
+    <source src="video/哑铃飞鸟.mp4" type="video/mp4">
+</video>
