@@ -1,0 +1,87 @@
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>zBox</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body ng-app="myApp" ng-controller="myCtrl">
+    <input id="myInput" type="text" inputmode="latin" placeholder="搜索" ng-model="filter_text" ng-change="FilterApp()" />
+    <table>
+        <thead>
+        <tr>
+            <th class="status_th">状态</td>
+            <th>应用</td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="app in apps" ng-if="!app.weed_out" class="{{GetClass(app)}}">
+            <td class="status_td" ng-click="Freeze(app)" ng-bind="app.is_hidden?'已冻结':'已解冻'"></td>
+            <td ng-click="OpenApp(app)">
+                <div class="app_name_td" ng-bind="app.app_name"></div>
+                <div class="pkg_name_td" ng-bind="app.pkg_name"></div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <script src="js/jquery-3.0.0.min.js"></script>
+    <script src="js/angular.min.js"></script>
+    <script src="js/apps.js"></script>
+<script>
+    var is_debug = window.navigator.userAgent.indexOf("Edg") != -1;
+
+    var apps = apps_test;
+    if (!is_debug) {
+        apps = window.JsServer.GetAppList();
+        apps = JSON.parse(apps);
+    }
+    apps.sort((a, b) => a.app_name.localeCompare(b.app_name));
+
+    document.getElementById("myInput").focus();
+
+    var app = angular.module('myApp', []);
+    app.controller('myCtrl', function($scope, $http) {
+        $scope.apps = apps;
+
+        $scope.Freeze = function(app) {
+            if (!is_debug) {
+                var re = window.JsServer.Freeze(app.pkg_name, !app.is_hidden);
+                if (!re) {
+                    alert("操作失败, 请检查zBox是否设备管理员!");
+                    return;
+                }
+            }
+            app.is_hidden = !app.is_hidden;
+        };
+
+        $scope.OpenApp = function(app) {
+            if (is_debug) return;
+            window.JsServer.OpenApp(app.pkg_name);
+        };
+
+        $scope.GetClass = function(app) {
+            if (app.is_hidden) {
+                return "gray_tr";
+            }
+            return "";
+        };
+
+        $scope.FilterApp = function() {
+            var filter_text = $scope.filter_text.toLowerCase();
+            for (var i = 0; i < $scope.apps.length; i++) {
+                if ($scope.apps[i].app_name.toLowerCase().indexOf(filter_text) != -1) {
+                    $scope.apps[i].weed_out = false;
+                    continue
+                }
+                if ($scope.apps[i].pkg_name.toLowerCase().indexOf(filter_text) != -1) {
+                    $scope.apps[i].weed_out = false;
+                    continue
+                }
+                $scope.apps[i].weed_out = true;
+            }
+        };
+
+    });
+</script>
+</body>
+</html>
