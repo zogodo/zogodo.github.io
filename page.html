@@ -63,6 +63,9 @@
         if (gitalk_id == "va") {
             url = "https://raw.githubusercontent.com/zogodo/SandVXposed/master/doc/VirtualApp%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90.md"
         }
+        if (gitalk_id == "zbox") {
+            url = "https://raw.githubusercontent.com/zogodo/zBox/refs/heads/master/README.md"
+        }
         $http.get(url).then(function(re) {
             $scope.content = re.data;
             WriteMd(cnt_div, $scope.content);
