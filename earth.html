@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>地球仪</title>
+    <link rel="icon" href="https:/ion.cesium.com/favicon.ico">
     <script src="https://cesium.com/downloads/cesiumjs/releases/1.137/Build/Cesium/Cesium.js"></script>
     <link href="https://cesium.com/downloads/cesiumjs/releases/1.137/Build/Cesium/Widgets/widgets.css" rel="stylesheet">
     <style>
@@ -20,12 +21,18 @@
 <body>
     <div id="cesiumContainer"></div>
     <script>
-        const tk = '5f7d37357966d5d0c2b3ffa59ad13c75'; // 必须去天地图官网申请
+        // 注意：必须在 new Cesium.Viewer 之前执行
+        Cesium.Camera.DEFAULT_VIEW_RECTANGLE = Cesium.Rectangle.fromDegrees(
+            73.0, 15.0, 135.0, 55.0 // 西、南、东、北（大致覆盖中国版图）
+        );
+        // Cesium.Camera.DEFAULT_VIEW_FACTOR = 1.2; // 视角缩放因子，越大看得越远
 
         // 1. 初始化 Viewer (不使用默认影像)
         const viewer = new Cesium.Viewer('cesiumContainer', {
             imageryProvider: false
         });
+
+        const tk = '5f7d37357966d5d0c2b3ffa59ad13c75'; // 必须去天地图官网申请
 
         // 2. 添加【矢量底图】 (只有路网、行政区、水系)
         const vecLayer = new Cesium.WebMapTileServiceImageryProvider({
