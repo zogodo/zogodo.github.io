@@ -1,30 +1,35 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="utf-8" />
-  <title>Cesium OK Demo</title>
-  <script src="https://cdn.jsdelivr.net/npm/cesium@1.111/Build/Cesium/Cesium.js"></script>
-  <link href="https://cdn.jsdelivr.net/npm/cesium@1.111/Build/Cesium/Widgets/widgets.css" rel="stylesheet">
-  <style>
-    html, body, #cesiumContainer {
-      width: 100%;
-      height: 100%;
-      margin: 0;
-      padding: 0;
-      overflow: hidden;
-    }
-  </style>
-</head>
-<body>
-  <div id="cesiumContainer"></div>
-  <script>
-    Cesium.Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI1ZWYwNjM3Ny04MzkxLTQwNDYtYTU3OS00YjUxMmVmMGZjZmMiLCJpZCI6Mzg1OTc1LCJpYXQiOjE3NzAwMDMxNjh9.-ka9x7kNq2LueWtl5cLqPyUuId4orkNeYVLfvij_gog';
 
-    const viewer = new Cesium.Viewer('cesiumContainer', {
-      terrainProvider: Cesium.Terrain.fromWorldTerrain(),
-      timeline: false,
-      animation: false,
-    });
-  </script>
+<head>
+    <meta charset="utf-8" />
+    <title>Cesium OK Demo</title>
+    <script src="https://cdn.jsdelivr.net/npm/cesium@1.111/Build/Cesium/Cesium.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/cesium@1.111/Build/Cesium/Widgets/widgets.css" rel="stylesheet">
+    <style>
+        html,
+        body,
+        #cesiumContainer {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="cesiumContainer"></div>
+    <script>
+        Cesium.Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI1ZWYwNjM3Ny04MzkxLTQwNDYtYTU3OS00YjUxMmVmMGZjZmMiLCJpZCI6Mzg1OTc1LCJpYXQiOjE3NzAwMDMxNjh9.-ka9x7kNq2LueWtl5cLqPyUuId4orkNeYVLfvij_gog';
+
+        const viewer = new Cesium.Viewer('cesiumContainer', {
+            terrainProvider: Cesium.Terrain.fromWorldTerrain(),
+            timeline: false,
+            animation: false,
+        });
+    </script>
 </body>
+
 </html>
