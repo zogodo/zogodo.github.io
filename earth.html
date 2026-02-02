@@ -36,7 +36,7 @@
 
         // 2. 添加【矢量底图】 (只有路网、行政区、水系)
         const vecLayer = new Cesium.WebMapTileServiceImageryProvider({
-            url: `http://t0.tianditu.gov.cn/vec_w/wmts?tk=${tk}`,
+            url: `https://t0.tianditu.gov.cn/vec_w/wmts?tk=${tk}`,
             layer: "vec",
             style: "default",
             format: "tiles",
@@ -47,7 +47,7 @@
 
         // 3. 添加【中文注记】 (这步才是显示文字的关键！)
         const cvaLayer = new Cesium.WebMapTileServiceImageryProvider({
-            url: `http://t0.tianditu.gov.cn/cva_w/wmts?tk=${tk}`,
+            url: `https://t0.tianditu.gov.cn/cva_w/wmts?tk=${tk}`,
             layer: "cva",
             style: "default",
             format: "tiles",
