@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <title>地球仪</title>
+    <script src="https://cesium.com/downloads/cesiumjs/releases/1.137/Build/Cesium/Cesium.js"></script>
+    <link href="https://cesium.com/downloads/cesiumjs/releases/1.137/Build/Cesium/Widgets/widgets.css" rel="stylesheet">
+    <style>
+        #cesiumContainer {
+            width: 100%;
+            height: 100vh;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="cesiumContainer"></div>
+    <script>
+        // 1. 设置 Token (在 Cesium ion 官网申请)
+        Cesium.Ion.defaultAccessToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI1ZWYwNjM3Ny04MzkxLTQwNDYtYTU3OS00YjUxMmVmMGZjZmMiLCJpZCI6Mzg1OTc1LCJpYXQiOjE3NzAwMDMxNjh9.-ka9x7kNq2LueWtl5cLqPyUuId4orkNeYVLfvij_gog";
+
+        // 初始化 Viewer
+        const viewer = new Cesium.Viewer('cesiumContainer', {
+            imageryProvider: false,
+            baseLayerPicker: false,
+            terrainProvider: undefined // 禁用地形
+        });
+
+        // 添加高德矢量底图 (style=7 为标准矢量地图)
+        const amapLayer = new Cesium.UrlTemplateImageryProvider({
+            url: 'https://webrd0{s}.is.autonavi.com/appmaptile?lang=zh_cn&size=1&scale=1&style=7&x={x}&y={y}&z={z}',
+            subdomains: ['1', '2', '3', '4'],
+            minimumLevel: 1,
+            maximumLevel: 18
+        });
+
+        viewer.imageryLayers.addImageryProvider(amapLayer);
+    </script>
+</body>
+
+</html>

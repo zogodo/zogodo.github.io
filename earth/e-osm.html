@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <title>地球仪</title>
+    <script src="https://cesium.com/downloads/cesiumjs/releases/1.137/Build/Cesium/Cesium.js"></script>
+    <link href="https://cesium.com/downloads/cesiumjs/releases/1.137/Build/Cesium/Widgets/widgets.css" rel="stylesheet">
+    <style>
+        #cesiumContainer {
+            width: 100%;
+            height: 100vh;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="cesiumContainer"></div>
+    <script>
+        // 1. 设置 Token (在 Cesium ion 官网申请)
+        Cesium.Ion.defaultAccessToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI1ZWYwNjM3Ny04MzkxLTQwNDYtYTU3OS00YjUxMmVmMGZjZmMiLCJpZCI6Mzg1OTc1LCJpYXQiOjE3NzAwMDMxNjh9.-ka9x7kNq2LueWtl5cLqPyUuId4orkNeYVLfvij_gog";
+
+        // 1. 设置 Token (必填，否则无法加载基础资源)
+        Cesium.Ion.defaultAccessToken = '你的YOUR_TOKEN';
+
+        // 2. 初始化 Viewer，关闭自带的所有干扰项
+        const viewer = new Cesium.Viewer('cesiumContainer', {
+            // 关闭默认卫星影像
+            imageryProvider: false,
+            // 关闭默认地形
+            terrainProvider: undefined,
+            // 隐藏基础图层选择器（因为我们要手动控制图层）
+            baseLayerPicker: false,
+            // 隐藏地形选择器
+            terrainExaggeration: 1.0,
+        });
+
+        // 3. 添加 OSM 标准风格底图
+        const osmLayer = new Cesium.OpenStreetMapImageryProvider({
+            url: 'https://a.tile.openstreetmap.org/'
+        });
+        viewer.imageryLayers.addImageryProvider(osmLayer);
+
+        // 4. (可选) 设置地球背景颜色
+        // 当没有影像覆盖时，地球默认是蓝色的。你可以通过以下方式修改：
+        viewer.scene.globe.baseColor = Cesium.Color.fromCssColorString('#111d28');
+    </script>
+</body>
+
+</html>
