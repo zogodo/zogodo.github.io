@@ -23,17 +23,34 @@
         // 1. 设置 Token (在 Cesium ion 官网申请)
         Cesium.Ion.defaultAccessToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI1ZWYwNjM3Ny04MzkxLTQwNDYtYTU3OS00YjUxMmVmMGZjZmMiLCJpZCI6Mzg1OTc1LCJpYXQiOjE3NzAwMDMxNjh9.-ka9x7kNq2LueWtl5cLqPyUuId4orkNeYVLfvij_gog";
 
-        // 初始化时关闭默认影像
-        const viewer = new Cesium.Viewer('cesiumContainer');
+        const tk = '5f7d37357966d5d0c2b3ffa59ad13c75'; // 必须去天地图官网申请
 
-        // 加载天地图全球矢量底图（通常只有水系和行政轮廓）
-        viewer.imageryLayers.addImageryProvider(new Cesium.WebMapTileServiceImageryProvider({
-            url: "http://t0.tianditu.gov.cn/vec_w/wmts?tk=5f7d37357966d5d0c2b3ffa59ad13c75",
+        // 1. 初始化 Viewer (不使用默认影像)
+        const viewer = new Cesium.Viewer('cesiumContainer', {
+            imageryProvider: false
+        });
+
+        // 2. 添加【矢量底图】 (只有路网、行政区、水系)
+        const vecLayer = new Cesium.WebMapTileServiceImageryProvider({
+            url: `http://t0.tianditu.gov.cn/vec_w/wmts?tk=${tk}`,
             layer: "vec",
             style: "default",
             format: "tiles",
             tileMatrixSetID: "w",
-        }));
+            maximumLevel: 18
+        });
+        viewer.imageryLayers.addImageryProvider(vecLayer);
+
+        // 3. 添加【中文注记】 (这步才是显示文字的关键！)
+        const cvaLayer = new Cesium.WebMapTileServiceImageryProvider({
+            url: `http://t0.tianditu.gov.cn/cva_w/wmts?tk=${tk}`,
+            layer: "cva",
+            style: "default",
+            format: "tiles",
+            tileMatrixSetID: "w",
+            maximumLevel: 18
+        });
+        viewer.imageryLayers.addImageryProvider(cvaLayer);
     </script>
 </body>
 
