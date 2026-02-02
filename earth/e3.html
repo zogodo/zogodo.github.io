@@ -23,22 +23,45 @@
         // 1. 设置 Token (在 Cesium ion 官网申请)
         Cesium.Ion.defaultAccessToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI1ZWYwNjM3Ny04MzkxLTQwNDYtYTU3OS00YjUxMmVmMGZjZmMiLCJpZCI6Mzg1OTc1LCJpYXQiOjE3NzAwMDMxNjh9.-ka9x7kNq2LueWtl5cLqPyUuId4orkNeYVLfvij_gog";
 
-        // 注意：由于加载地形现在是异步的，建议先初始化 Viewer，再设置地形
+        // 1. 初始化 Viewer，关闭自带的影像（默认是卫星图）
         const viewer = new Cesium.Viewer('cesiumContainer', {
-            // 暂时不在这里传 terrainProvider
+            imageryProvider: false, // 不加载默认卫星图
+            baseLayerPicker: false, // 隐藏图层选择器
+            terrainProvider: undefined // 确保不加载地形
         });
 
-        // 使用异步函数设置全球地形
-        const setupTerrain = async () => {
+        // 2. 加载 GeoJSON 数据
+        const loadGlobalMap = async () => {
             try {
-                const terrainProvider = await Cesium.CesiumTerrainProvider.fromIonAssetId(1);
-                viewer.terrainProvider = terrainProvider;
+                const dataSource = await Cesium.GeoJsonDataSource.load(
+                    'https://raw.githubusercontent.com/datasets/geo-boundaries-world-110m/master/countries.geojson',
+                    {
+                        stroke: Cesium.Color.WHITE,    // 边界线颜色
+                        fill: Cesium.Color.fromCssColorString('#3d3d3d'), // 默认填充色
+                        strokeWidth: 2,                // 线宽
+                        markerSize: 0
+                    }
+                );
+
+                viewer.dataSources.add(dataSource);
+
+                // 3. 为每个国家设置随机颜色（或根据数据字段设置）
+                const entities = dataSource.entities.values;
+                for (let i = 0; i < entities.length; i++) {
+                    const entity = entities[i];
+                    entity.polygon.material = Cesium.Color.fromRandom({
+                        alpha: 0.8 // 设置透明度
+                    });
+                    // 移除多边形的轮廓（如果需要更清晰的填充感）
+                    entity.polygon.outline = true;
+                    entity.polygon.outlineColor = Cesium.Color.BLACK;
+                }
             } catch (error) {
-                console.error('地形加载失败：', error);
+                console.error("加载地图数据失败:", error);
             }
         };
 
-        setupTerrain();
+        loadGlobalMap();
     </script>
 </body>
 
