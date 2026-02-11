@@ -34,6 +34,7 @@
 
         const tk = '5f7d37357966d5d0c2b3ffa59ad13c75'; // 必须去天地图官网申请
 
+        var ml = 18; //不设置的话放大会变空白
         // 2. 添加【矢量底图】 (只有路网、行政区、水系)
         const vecLayer = new Cesium.WebMapTileServiceImageryProvider({
             url: `https://t0.tianditu.gov.cn/vec_w/wmts?tk=${tk}`,
@@ -41,7 +42,7 @@
             style: "default",
             format: "tiles",
             tileMatrixSetID: "w",
-            maximumLevel: 5,
+            maximumLevel: ml,
         });
         viewer.imageryLayers.addImageryProvider(vecLayer);
 
@@ -52,7 +53,7 @@
             style: "default",
             format: "tiles",
             tileMatrixSetID: "w",
-            maximumLevel: 8,
+            maximumLevel: ml,
         });
         viewer.imageryLayers.addImageryProvider(cvaLayer);
     </script>

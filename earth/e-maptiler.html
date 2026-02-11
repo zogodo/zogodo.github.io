@@ -33,7 +33,7 @@
         // https://api.maptiler.com/maps/outdoor-v4/?key=VEqS4JHqzQHMKhn62QIm#-0.2/0.00000/21.39509
         // https://api.maptiler.com/maps/outdoor-v4/{z}/{x}/{y}.png?key=VEqS4JHqzQHMKhn62QIm
 
-        // GPT
+        // GPT map
         // const viewer = new Cesium.Viewer("cesiumContainer", {
         //     imageryProvider: new Cesium.UrlTemplateImageryProvider({
         //         url: "https://api.maptiler.com/maps/outdoor-v4/{z}/{x}/{y}.png?key=VEqS4JHqzQHMKhn62QIm",
@@ -46,12 +46,29 @@
         const viewer = new Cesium.Viewer('cesiumContainer', {
             imageryProvider: false
         });
-        const vecLayer = new Cesium.UrlTemplateImageryProvider({
-            url: "https://api.maptiler.com/maps/outdoor-v4/{z}/{x}/{y}.png?key=VEqS4JHqzQHMKhn62QIm",
-            tileWidth: 256,
-            tileHeight: 256
+        // const vecLayer = new Cesium.UrlTemplateImageryProvider({
+        //     url: "https://api.maptiler.com/maps/outdoor-v4/{z}/{x}/{y}.png?key=VEqS4JHqzQHMKhn62QIm",
+        //     tileWidth: 256,
+        //     tileHeight: 256
+        // });
+        // viewer.imageryLayers.addImageryProvider(vecLayer);
+        // GPT vecter
+        const vectorLayer = new Cesium.VectorTileImageryProvider({
+            // url: "https://api.maptiler.com/tiles/v3/{z}/{x}/{y}.pbf?key=YOUR_KEY",
+            url: "https://api.maptiler.com/tiles/countries/{z}/{x}/{y}.pbf?key=VEqS4JHqzQHMKhn62QIm",
+            style: {
+                layers: {
+                    country: {
+                        filter: ["==", "layer", "country"],
+                        paint: {
+                            "fill-color": "rgba(0, 120, 255, 0.4)",
+                            "fill-outline-color": "#ffffff"
+                        }
+                    }
+                }
+            }
         });
-        viewer.imageryLayers.addImageryProvider(vecLayer);
+        viewer.imageryLayers.addImageryProvider(vectorLayer);
 
 
     </script>
