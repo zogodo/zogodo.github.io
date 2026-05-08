@@ -22,22 +22,32 @@
             object-fit: contain;
             background-color: #f0f0f0;
         }
-        input {
-            /* width: 100%; */
+        .ipt_div {
+            height: 60px;
             box-sizing: border-box;
-            padding: 5px 10px;
+            padding: 10px 8px;
+            position: fixed;
+            top: 0px;
+            left: 0px;
+            right: 0px;
+            background: red;
+        }
+        .ipt_div input {
+            padding: 10px;
             position: fixed;
             top: 10px;
             left: 8px;
             right: 8px;
         }
         p {
-            margin: 50px 0 10px 0;
+            margin: 70px 0 10px 0;
         }
     </style>
 </head>
 <body ng-app="myApp" ng-controller="myCtrl">
+    <div class="ipt_div">
     <input ng-model="filter" ng-change="FilterVideo()" placeholder="空格隔开可多重匹配"/>
+    </div>
     <p>{{videos.length}}</p>
     <div class="item" ng-repeat="video in videos" ng-if="video.Type=='Video'">
         <!--
