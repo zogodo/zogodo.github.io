@@ -1,0 +1,75 @@
+<html>
+<head>
+<style>
+.number-container {
+    /* 强制不换行 */
+    white-space: nowrap;
+    overflow: hidden;
+    /* font-family: 'Courier New', Courier, monospace; */
+    /* font-size: calc(100vw / 64); */
+    /* font-size: 10vw; */
+    font-size: 10cqw;
+    letter-spacing: 0;
+    font-family: 
+        "SF Mono", 
+        "Monaco", 
+        "Consolas", 
+        "Ubuntu Mono", 
+        "Courier New", 
+        monospace;
+}
+.www {
+    background-color: red;
+    width: 50vw;
+    height: 10px;
+}
+/* 1. 现代系统原生流 */
+.font-system {
+    font-family: ui-monospace, SFMono-Regular, "Cascadia Code", "Segoe UI", "Liberation Mono", monospace;
+}
+
+/* 2. 经典微软风格 */
+.font-consolas {
+    font-family: "Consolas", "Lucida Console", monospace;
+}
+
+/* 3. 苹果精致风格 */
+.font-apple {
+    font-family: "Menlo", "Monaco", "Courier New", monospace;
+}
+
+/* 4. 复古打字机风格 */
+.font-retro {
+    font-family: "Courier New", Courier, monospace;
+    font-weight: bold;
+}
+
+/* 5. 谷歌极简风格 */
+.font-google {
+    font-family: "Roboto Mono", monospace;
+}
+
+/* 辅助线：检查是否精准对齐 100% 宽度 */
+.guide-line {
+    height: 2px;
+    background: linear-gradient(90deg, #444 0%, #ff4757 100%);
+    margin-bottom: 10px;
+}
+</style>
+</head>
+
+<body>
+<div class="number-container font-system">1234567890</div>
+<div class="number-container font-system">1111111111</div>
+<div class="number-container font-system">0000000000</div>
+<div class="number-container font-system">0000000000</div>
+<div class="number-container font-system">一二三四五六七八九十</div>
+
+<div class="number-container font-consolas">1234567890</div>
+<div class="number-container font-google">1234567890</div>
+<div class="number-container guide-line">1234567890</div>
+<div class="number-container font-apple">1234567890</div>
+<div class="number-container font-retro">1234567890</div>
+<div class="www"></div>
+</body>
+</html>
