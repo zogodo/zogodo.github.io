@@ -1,4 +1,5 @@
 <html>
+
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
@@ -17,31 +18,60 @@ input {
     width: 100%;
     padding: 1vw 2vw;
 }
-
 </style>
 </head>
 
-<body>
+<body ng-app="myApp" ng-controller="myCtrl">
     <table>
         <tr>
-            <td colspan="2"><input /></td>
+            <td colspan="2">
+                <input ng-model="res"/>
+            </td>
         </tr>
         <tr>
             <td style="width: 9vw;">DEC</td>
-            <td><input /></td>
+            <td>
+                <input ng-model="dec" ng-change="ChangeIpt('dec')"/>
+            </td>
         </tr>
         <tr>
             <td>HEX</td>
-            <td><input /></td>
+            <td>
+                <input ng-model="hex" ng-change="ChangeIpt('hex')"/>
+            </td>
         </tr>
         <tr>
             <td>OCT</td>
-            <td><input /></td>
+            <td>
+                <input ng-model="oct" ng-change="ChangeIpt('oct')"/>
+            </td>
         </tr>
         <tr>
             <td>BIN</td>
-            <td><input /></td>
+            <td>
+                <input ng-model="bin" ng-change="ChangeIpt('bin')"/>
+            </td>
         </tr>
     </table>
 </body>
+
+<script src="js/angular.min.js"></script>
+<script src="js/my_tool.js"></script>
+<script>
+    var app = angular.module('myApp', []);
+    app.controller('myCtrl', function($scope, $http) {
+        $scope.res = 0;
+        $scope.dec = 0;
+        $scope.hex = 0;
+        $scope.oct = 0;
+        $scope.bin = 0;
+
+        $scope.ChangeIpt = function(base) {
+            if (base == 'dec') {
+                
+            }
+        };
+    });
+</script>
+
 </html>
