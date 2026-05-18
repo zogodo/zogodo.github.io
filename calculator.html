@@ -13,6 +13,7 @@ table {
 }
 td {
     padding: 1vw;
+    height: 8vw;
 }
 .td_base_type {
     padding: 0;
@@ -48,7 +49,7 @@ label {
     <table>
         <tr>
             <td colspan="2">
-                <input type="text" ng-model="RES.value"/>
+                <input type="text" ng-model="RES.value" ng-change="ChangeIpt()"/>
             </td>
         </tr>
         <tr class="base_tr">
@@ -84,19 +85,30 @@ label {
 <script>
     var app = angular.module('myApp', []);
     app.controller('myCtrl', function($scope, $http) {
-        $scope.RES = {value: 0, selected: false};
+        $scope.RES = {value: '', selected: false};
         $scope.DEC = {value: 0, selected: true};
         $scope.HEX = {value: 0, selected: false};
         $scope.OTC = {value: 0, selected: false};
         $scope.BIN = {value: 0, selected: false};
 
-        $scope.ChangeIpt = function(base) {
-            if (base.value == 'DEC') {
-                
+        $scope.ChangeIpt = function() {
+            var exp = $scope.RES.value.toString();
+            if ($scope.HEX.selected) {
+                exp =  exp.replace(/(\w+)/g, "0x$1");
+            } else if ($scope.OTC.selected) {
+                exp =  exp.replace(/(\w+)/g, "0o$1");
+            } else if ($scope.BIN.selected) {
+                exp =  exp.replace(/(\w+)/g, "0b$1");
             }
+            var res = eval(exp);
+            $scope.DEC.value = res.toString(10);
+            $scope.HEX.value = res.toString(16).toUpperCase();
+            $scope.OTC.value = res.toString(8);
+            $scope.BIN.value = res.toString(2);
         };
 
         $scope.SelectBase = function(base) {
+            $scope.RES.value = '';
             $scope.DEC.selected = false;
             $scope.HEX.selected = false;
             $scope.OTC.selected = false;
