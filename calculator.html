@@ -14,16 +14,22 @@ table {
 td {
     padding: 1vw;
 }
-.base_td {
+.td_base_type {
     padding: 0;
     width: 10vw;
     text-align: right;
 }
-.base_td input {
+.td_base_type input {
     margin: 0;
 }
-.base_td label {
+.td_base_type label {
     margin: 0;
+}
+.td_base_value {
+    text-align: right;
+}
+.base_tr td {
+    border-bottom: black solid 1px;
 }
 input[type=text] {
     width: 100%;
@@ -45,37 +51,29 @@ label {
                 <input type="text" ng-model="RES.value"/>
             </td>
         </tr>
-        <tr>
-            <td class="base_td">
+        <tr class="base_tr">
+            <td class="td_base_type">
                 <label ng-class="DEC.selected?'active':''" ng-click="SelectBase(DEC)">DEC</label>
             </td>
-            <td>
-                <input type="text" ng-model="DEC.value" ng-change="ChangeIpt('DEC')"/>
-            </td>
+            <td class="td_base_value">{{DEC.value}}</td>
         </tr>
-        <tr>
-            <td class="base_td">
+        <tr class="base_tr">
+            <td class="td_base_type">
                 <label ng-class="HEX.selected?'active':''" ng-click="SelectBase(HEX)">HEX</label>
             </td>
-            <td>
-                <input type="text" ng-model="HEX.value" ng-change="ChangeIpt('HEX')"/>
-            </td>
+            <td class="td_base_value">{{HEX.value}}</td>
         </tr>
-        <tr>
-            <td class="base_td">
+        <tr class="base_tr">
+            <td class="td_base_type">
                 <label ng-class="OTC.selected?'active':''" ng-click="SelectBase(OTC)">OTC</label>
             </td>
-            <td>
-                <input type="text" ng-model="OTC.value" ng-change="ChangeIpt('OTC')"/>
-            </td>
+            <td class="td_base_value">{{OTC.value}}</td>
         </tr>
-        <tr>
-            <td class="base_td">
+        <tr class="base_tr">
+            <td class="td_base_type">
                 <label ng-class="BIN.selected?'active':''" ng-click="SelectBase(BIN)">BIN</label>
             </td>
-            <td>
-                <input type="text" ng-model="BIN.value" ng-change="ChangeIpt('BIN')"/>
-            </td>
+            <td class="td_base_value">{{BIN.value}}</td>
         </tr>
     </table>
 </body>
@@ -87,7 +85,7 @@ label {
     var app = angular.module('myApp', []);
     app.controller('myCtrl', function($scope, $http) {
         $scope.RES = {value: 0, selected: false};
-        $scope.DEC = {value: 0, selected: false};
+        $scope.DEC = {value: 0, selected: true};
         $scope.HEX = {value: 0, selected: false};
         $scope.OTC = {value: 0, selected: false};
         $scope.BIN = {value: 0, selected: false};
