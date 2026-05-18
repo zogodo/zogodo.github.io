@@ -4,7 +4,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
 * {
-    font-size: 5cqw;
+    font-size: 5vw;
     letter-spacing: 0;
     font-family: ui-monospace, SFMono-Regular, "Cascadia Code", "Segoe UI", "Liberation Mono", monospace;
 }
@@ -14,9 +14,26 @@ table {
 td {
     padding: 1vw;
 }
-input {
+.base_td {
+    padding: 0;
+    width: 10vw;
+    text-align: right;
+}
+.base_td input {
+    margin: 0;
+}
+.base_td label {
+    margin: 0;
+}
+input[type=text] {
     width: 100%;
     padding: 1vw 2vw;
+}
+label {
+    font-family: "Consolas", "Lucida Console", monospace;
+}
+.active {
+    color: green;
 }
 </style>
 </head>
@@ -25,53 +42,76 @@ input {
     <table>
         <tr>
             <td colspan="2">
-                <input ng-model="res"/>
+                <input type="text" ng-model="RES.value"/>
             </td>
         </tr>
         <tr>
-            <td style="width: 9vw;">DEC</td>
+            <td class="base_td">
+                <label ng-class="DEC.selected?'active':''" ng-click="SelectBase(DEC)">DEC</label>
+            </td>
             <td>
-                <input ng-model="dec" ng-change="ChangeIpt('dec')"/>
+                <input type="text" ng-model="DEC.value" ng-change="ChangeIpt('DEC')"/>
             </td>
         </tr>
         <tr>
-            <td>HEX</td>
+            <td class="base_td">
+                <label ng-class="HEX.selected?'active':''" ng-click="SelectBase(HEX)">HEX</label>
+            </td>
             <td>
-                <input ng-model="hex" ng-change="ChangeIpt('hex')"/>
+                <input type="text" ng-model="HEX.value" ng-change="ChangeIpt('HEX')"/>
             </td>
         </tr>
         <tr>
-            <td>OCT</td>
+            <td class="base_td">
+                <label ng-class="OTC.selected?'active':''" ng-click="SelectBase(OTC)">OTC</label>
+            </td>
             <td>
-                <input ng-model="oct" ng-change="ChangeIpt('oct')"/>
+                <input type="text" ng-model="OTC.value" ng-change="ChangeIpt('OTC')"/>
             </td>
         </tr>
         <tr>
-            <td>BIN</td>
+            <td class="base_td">
+                <label ng-class="BIN.selected?'active':''" ng-click="SelectBase(BIN)">BIN</label>
+            </td>
             <td>
-                <input ng-model="bin" ng-change="ChangeIpt('bin')"/>
+                <input type="text" ng-model="BIN.value" ng-change="ChangeIpt('BIN')"/>
             </td>
         </tr>
     </table>
 </body>
 
+<!-- <script src="js/jquery-3.0.0.min.js"></script> -->
 <script src="js/angular.min.js"></script>
 <script src="js/my_tool.js"></script>
 <script>
     var app = angular.module('myApp', []);
     app.controller('myCtrl', function($scope, $http) {
-        $scope.res = 0;
-        $scope.dec = 0;
-        $scope.hex = 0;
-        $scope.oct = 0;
-        $scope.bin = 0;
+        $scope.RES = {value: 0, selected: false};
+        $scope.DEC = {value: 0, selected: false};
+        $scope.HEX = {value: 0, selected: false};
+        $scope.OTC = {value: 0, selected: false};
+        $scope.BIN = {value: 0, selected: false};
 
         $scope.ChangeIpt = function(base) {
-            if (base == 'dec') {
+            if (base.value == 'DEC') {
                 
             }
         };
+
+        $scope.SelectBase = function(base) {
+            $scope.DEC.selected = false;
+            $scope.HEX.selected = false;
+            $scope.OTC.selected = false;
+            $scope.BIN.selected = false;
+            base.selected = true;
+        };
     });
+    /*
+    $("label").click(function() {
+        $("label").removeClass("active");
+        $(this).addClass("active");
+    });
+    */
 </script>
 
 </html>
