@@ -48,6 +48,9 @@ input[type=text] {
 .active {
     color: chartreuse;
 }
+.error {
+    color: red;
+}
 button {
     width: 100%;
     padding: 10px;
@@ -129,7 +132,14 @@ button {
             } else if ($scope.BIN.selected) {
                 exp =  exp.replace(/(\w+)/g, "0b$1");
             }
-            var res = eval(exp);
+            RES.classList.remove('error');
+            try {
+                var res = eval(exp);
+            } catch (error) {
+                RES.classList.add('error');
+                console.error("exp err:", error.message);
+                return;
+            }
             $scope.DEC.value = ToNum(res.toString(10));
             $scope.HEX.value = ToNum(res.toString(16).toUpperCase());
             $scope.OTC.value = ToNum(res.toString(8));
