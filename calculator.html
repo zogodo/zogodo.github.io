@@ -34,6 +34,7 @@ td {
     width: 11em;
     float: right;
     word-break: break-all;
+    white-space: pre-wrap;
 }
 .base_tr td {
     border-bottom: black solid 1px;
@@ -64,13 +65,17 @@ button {
             <td class="td_base_type">
                 <label ng-class="DEC.selected?'active':''" ng-click="SelectBase(DEC)">DEC</label>
             </td>
-            <td class="td_base_value">{{DEC.value}}</td>
+            <td class="td_base_value">
+                <div>{{DEC.value}}</div>
+            </td>
         </tr>
         <tr class="base_tr">
             <td class="td_base_type">
                 <label ng-class="HEX.selected?'active':''" ng-click="SelectBase(HEX)">HEX</label>
             </td>
-            <td class="td_base_value">{{HEX.value}}</td>
+            <td class="td_base_value">
+                <div>{{HEX.value}}</div>
+            </td>
         </tr>
         <tr class="base_tr">
             <td class="td_base_type">
@@ -100,10 +105,10 @@ button {
         RES.focus();
     };
     function ToNum(val) {
-        val = val.toString().replace(/\w(?=(\w{4})+(?!\w))/g, '$&_');
+        val = val.toString().replace(/\w(?=(\w{4})+(?!\w))/g, '$& ');
         var mod = val.length % 20;
         if (mod == 0) return val;
-        return '-'.repeat(20 - mod) + val;
+        return ' '.repeat(20 - mod) + val;
     }
     var app = angular.module('myApp', []);
     app.controller('myCtrl', function($scope, $http) {
@@ -144,12 +149,6 @@ button {
             RES.focus();
         };
     });
-    /*
-    $("label").click(function() {
-        $("label").removeClass("active");
-        $(this).addClass("active");
-    });
-    */
 </script>
 
 </html>
