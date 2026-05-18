@@ -4,19 +4,22 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
 * {
-    font-size: 5vw;
+    font-size: 24px;
     letter-spacing: 0;
     /* font-family: ui-monospace, SFMono-Regular, "Cascadia Code", "Segoe UI", "Liberation Mono", monospace; */
-    font-family: "Consolas", "Lucida Console", monospace;
+    /* font-family: "Consolas", "Lucida Console", monospace; */
+    /* font-family: monospace; */
+    font-family: Consolas, Menlo, Monaco, "Roboto Mono", "Droid Sans Mono", monospace;
 }
 table {
     width: 100%;
 }
 td {
-    padding: 1vw;
+    padding: 10px 1vw;
     height: 8vw;
 }
 .td_base_type {
+    color: cornflowerblue;
     padding: 0;
     width: 10vw;
     text-align: right;
@@ -31,9 +34,8 @@ td {
     text-align: right;
 }
 .td_base_value div {
-    width: 11em;
     float: right;
-    word-break: break-all;
+    /* word-break: break-all; */
     white-space: pre-wrap;
 }
 .base_tr td {
@@ -44,7 +46,7 @@ input[type=text] {
     padding: 1vw 2vw;
 }
 .active {
-    color: green;
+    color: chartreuse;
 }
 button {
     width: 100%;
@@ -105,10 +107,10 @@ button {
         RES.focus();
     };
     function ToNum(val) {
-        val = val.toString().replace(/\w(?=(\w{4})+(?!\w))/g, '$& ');
-        var mod = val.length % 20;
-        if (mod == 0) return val;
-        return ' '.repeat(20 - mod) + val;
+        val = val.toString();
+        val = val.replace(/\w(?=(\w{16})+(?!\w))/g, '$&\n');
+        val = val.replace(/\w(?=(\w{4})+(?!\w))/g, '$& ');
+        return val;
     }
     var app = angular.module('myApp', []);
     app.controller('myCtrl', function($scope, $http) {
