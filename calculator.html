@@ -83,6 +83,9 @@ label {
 <script src="js/angular.min.js"></script>
 <script src="js/my_tool.js"></script>
 <script>
+    function ToNum(val) {
+        return val.toString().replace(/\w(?=(\w{4})+(?!\w))/g, '$& ');
+    }
     var app = angular.module('myApp', []);
     app.controller('myCtrl', function($scope, $http) {
         $scope.RES = {value: '', selected: false};
@@ -101,10 +104,10 @@ label {
                 exp =  exp.replace(/(\w+)/g, "0b$1");
             }
             var res = eval(exp);
-            $scope.DEC.value = res.toString(10);
-            $scope.HEX.value = res.toString(16).toUpperCase();
-            $scope.OTC.value = res.toString(8);
-            $scope.BIN.value = res.toString(2);
+            $scope.DEC.value = ToNum(res.toString(10));
+            $scope.HEX.value = ToNum(res.toString(16).toUpperCase());
+            $scope.OTC.value = ToNum(res.toString(8));
+            $scope.BIN.value = ToNum(res.toString(2));
         };
 
         $scope.SelectBase = function(base) {
