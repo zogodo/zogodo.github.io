@@ -42,6 +42,10 @@ label {
 .active {
     color: green;
 }
+button {
+    width: 100%;
+    margin-top: 5vw;
+}
 </style>
 </head>
 
@@ -49,7 +53,7 @@ label {
     <table>
         <tr>
             <td colspan="2">
-                <input type="text" ng-model="RES.value" ng-change="ChangeIpt()"/>
+                <input id="RES" type="text" ng-model="RES.value" ng-change="ChangeIpt()" placeholder="输入数学表达式"/>
             </td>
         </tr>
         <tr class="base_tr">
@@ -77,12 +81,16 @@ label {
             <td class="td_base_value">{{BIN.value}}</td>
         </tr>
     </table>
+    <button ng-click="Clear()">清空</button>
 </body>
 
 <!-- <script src="js/jquery-3.0.0.min.js"></script> -->
 <script src="js/angular.min.js"></script>
 <script src="js/my_tool.js"></script>
 <script>
+    window.onload = function() {
+        RES.focus();
+    };
     function ToNum(val) {
         return val.toString().replace(/\w(?=(\w{4})+(?!\w))/g, '$& ');
     }
@@ -117,6 +125,12 @@ label {
             $scope.OTC.selected = false;
             $scope.BIN.selected = false;
             base.selected = true;
+            RES.focus();
+        };
+
+        $scope.Clear = function() {
+            $scope.RES.value = '';
+            RES.focus();
         };
     });
     /*
