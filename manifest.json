@@ -5,7 +5,7 @@
   "start_url": "./calculator.html",
   "display": "standalone",
   "background_color": "#ffffff",
-  "theme_color": "#4CAF50",
+  "theme_color": "cornflowerblue",
   "icons": [
     {
       "src": "./img/calculator.jpg",
