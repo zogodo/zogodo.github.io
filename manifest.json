@@ -8,9 +8,9 @@
   "theme_color": "#4CAF50",
   "icons": [
     {
-      "src": "./img/calculator.png",
+      "src": "./img/calculator.jpg",
       "sizes": "512x512",
-      "type": "image/png",
+      "type": "image/jpg",
       "purpose": "any maskable"
     }
   ]
