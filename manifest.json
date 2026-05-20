@@ -1,0 +1,17 @@
+{
+  "name": "程序员计算器",
+  "short_name": "计算器",
+  "description": "程序员计算器",
+  "start_url": "./calculator.html",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#4CAF50",
+  "icons": [
+    {
+      "src": "./img/calculator.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
