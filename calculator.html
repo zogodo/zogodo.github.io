@@ -122,8 +122,8 @@ button {
     var app = angular.module('myApp', []);
     app.controller('myCtrl', function($scope, $http) {
         $scope.RES = {value: '', selected: false};
-        $scope.DEC = {value: 0, selected: false};
-        $scope.HEX = {value: 0, selected: true};
+        $scope.DEC = {value: 0, selected: true};
+        $scope.HEX = {value: 0, selected: false};
         $scope.OTC = {value: 0, selected: false};
         $scope.BIN = {value: 0, selected: false};
 
@@ -151,13 +151,14 @@ button {
         };
 
         $scope.SelectBase = function(base) {
-            $scope.RES.value = '';
+            // $scope.RES.value = '';
             $scope.DEC.selected = false;
             $scope.HEX.selected = false;
             $scope.OTC.selected = false;
             $scope.BIN.selected = false;
             base.selected = true;
             RES.focus();
+            $scope.ChangeIpt();
         };
 
         $scope.Clear = function() {
