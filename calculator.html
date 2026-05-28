@@ -242,6 +242,8 @@ button {
         };
 
         $scope.Clear = function() {
+            $scope.RES.value = '0';
+            $scope.ChangeIpt();
             $scope.RES.value = '';
             // RES.focus();
         };
