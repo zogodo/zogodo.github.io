@@ -23,7 +23,7 @@ td {
     height: 8vw;
 }
 .td_base_type {
-    color: cornflowerblue;
+    color: DodgerBlue;
     padding: 0;
     width: 10vw;
     text-align: right;
@@ -50,7 +50,7 @@ input[type=text] {
     padding: 10px;
 }
 .active {
-    color: chartreuse;
+    color: LimeGreen;
 }
 .error {
     color: red;
@@ -180,7 +180,7 @@ button {
         <tr>
             <td ng-click="ClickBtm('')" class="his_td">↻</td>
             <td ng-click="ClickBtm('0')" class="digit_td">0</td>
-            <td ng-click="ClickBtm('')" class="ctrl_td">←</td>
+            <td ng-click="BackBtm()" class="ctrl_td">←</td>
             <td ng-click="ClickBtm('')" class="qut_td">=</td>
         </tr>
     </table>
@@ -244,6 +244,11 @@ button {
         $scope.Clear = function() {
             $scope.RES.value = '';
             // RES.focus();
+        };
+
+        $scope.BackBtm = function() {
+            $scope.RES.value = $scope.RES.value.slice(0, -1);
+            $scope.ChangeIpt();
         };
 
         $scope.ClickBtm = function(btm) {
