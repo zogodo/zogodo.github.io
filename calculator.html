@@ -70,6 +70,27 @@ button {
     border: 1px solid #000;
     text-align: center;
 }
+.digit_td {
+    background: white;
+}
+.calculat_td {
+    background: SpringGreen;
+}
+.ctrl_td {
+    background: OrangeRed;
+}
+.letter_td {
+    background: DeepSkyBlue;
+}
+.bin_td {
+    background: SpringGreen;
+}
+.couple_td {
+    background: wheat;
+}
+.his_td {
+    background: Gainsboro;
+}
 </style>
 </head>
 
@@ -115,55 +136,54 @@ button {
     </table>
     <table class="button_tb">
         <tr>
-            <td>&</td>
-            <td>|</td>
-            <td>!</td>
-            <td>^</td>
+            <td ng-click="ClickBtm('&')" class="bin_td">&</td>
+            <td ng-click="ClickBtm('|')" class="bin_td">|</td>
+            <td ng-click="ClickBtm('!')" class="bin_td">!</td>
+            <td ng-click="ClickBtm('^')" class="bin_td">^</td>
         </tr>
         <tr>
-            <td>(</td>
-            <td>)</td>
-            <td><<</td>
-            <td>>></td>
+            <td ng-click="ClickBtm('(')" class="couple_td">(</td>
+            <td ng-click="ClickBtm(')')" class="couple_td">)</td>
+            <td ng-click="ClickBtm('<<')" class="couple_td"><<</td>
+            <td ng-click="ClickBtm('>>')" class="couple_td">>></td>
         </tr>
         <tr>
-            <td>D</td>
-            <td>E</td>
-            <td>F</td>
-            <td>CL</td>
+            <td ng-click="ClickBtm('D')" class="letter_td">D</td>
+            <td ng-click="ClickBtm('E')" class="letter_td">E</td>
+            <td ng-click="ClickBtm('F')" class="letter_td">F</td>
+            <td ng-click="Clear()" class="ctrl_td">CL</td>
         </tr>
         <tr>
-            <td>A</td>
-            <td>B</td>
-            <td>C</td>
-            <td>/</td>
+            <td ng-click="ClickBtm('A')" class="letter_td">A</td>
+            <td ng-click="ClickBtm('B')" class="letter_td">B</td>
+            <td ng-click="ClickBtm('C')" class="letter_td">C</td>
+            <td ng-click="ClickBtm('/')" class="calculat_td">/</td>
         </tr>
         <tr>
-            <td>7</td>
-            <td>8</td>
-            <td>9</td>
-            <td>*</td>
+            <td ng-click="ClickBtm('7')" class="digit_td">7</td>
+            <td ng-click="ClickBtm('8')" class="digit_td">8</td>
+            <td ng-click="ClickBtm('9')" class="digit_td">9</td>
+            <td ng-click="ClickBtm('*')" class="calculat_td">*</td>
         </tr>
         <tr>
-            <td>4</td>
-            <td>5</td>
-            <td>6</td>
-            <td>-</td>
+            <td ng-click="ClickBtm('4')" class="digit_td">4</td>
+            <td ng-click="ClickBtm('5')" class="digit_td">5</td>
+            <td ng-click="ClickBtm('6')" class="digit_td">6</td>
+            <td ng-click="ClickBtm('-')" class="calculat_td">-</td>
         </tr>
         <tr>
-            <td>1</td>
-            <td>2</td>
-            <td>3</td>
-            <td>+</td>
+            <td ng-click="ClickBtm('1')" class="digit_td">1</td>
+            <td ng-click="ClickBtm('2')" class="digit_td">2</td>
+            <td ng-click="ClickBtm('3')" class="digit_td">3</td>
+            <td ng-click="ClickBtm('+')" class="calculat_td">+</td>
         </tr>
         <tr>
-            <td>↻</td>
-            <td>0</td>
-            <td>←</td>
-            <td>=</td>
+            <td ng-click="ClickBtm('')" class="his_td">↻</td>
+            <td ng-click="ClickBtm('0')" class="digit_td">0</td>
+            <td ng-click="ClickBtm('')" class="ctrl_td">←</td>
+            <td ng-click="ClickBtm('')" class="qut_td">=</td>
         </tr>
     </table>
-    <button ng-click="Clear()">清空</button>
 </body>
 
 <!-- <script src="js/jquery-3.0.0.min.js"></script> -->
@@ -217,13 +237,18 @@ button {
             $scope.OTC.selected = false;
             $scope.BIN.selected = false;
             base.selected = true;
-            RES.focus();
+            // RES.focus();
             $scope.ChangeIpt();
         };
 
         $scope.Clear = function() {
             $scope.RES.value = '';
-            RES.focus();
+            // RES.focus();
+        };
+
+        $scope.ClickBtm = function(btm) {
+            $scope.RES.value += btm;
+            $scope.ChangeIpt();
         };
     });
 </script>
