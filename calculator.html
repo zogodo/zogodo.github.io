@@ -60,6 +60,16 @@ button {
     padding: 10px;
     margin-top: 5vw;
 }
+.button_tb {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed
+}
+.button_tb td, .button_tb th {
+    padding: 10px;
+    border: 1px solid #000;
+    text-align: center;
+}
 </style>
 </head>
 
@@ -101,6 +111,56 @@ button {
             <td class="td_base_value">
                 <div>{{BIN.value}}</div>
             </td>
+        </tr>
+    </table>
+    <table class="button_tb">
+        <tr>
+            <td>&</td>
+            <td>|</td>
+            <td>!</td>
+            <td>^</td>
+        </tr>
+        <tr>
+            <td>(</td>
+            <td>)</td>
+            <td><<</td>
+            <td>>></td>
+        </tr>
+        <tr>
+            <td>D</td>
+            <td>E</td>
+            <td>F</td>
+            <td>CL</td>
+        </tr>
+        <tr>
+            <td>A</td>
+            <td>B</td>
+            <td>C</td>
+            <td>/</td>
+        </tr>
+        <tr>
+            <td>7</td>
+            <td>8</td>
+            <td>9</td>
+            <td>*</td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td>5</td>
+            <td>6</td>
+            <td>-</td>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>2</td>
+            <td>3</td>
+            <td>+</td>
+        </tr>
+        <tr>
+            <td>↻</td>
+            <td>0</td>
+            <td>←</td>
+            <td>=</td>
         </tr>
     </table>
     <button ng-click="Clear()">清空</button>
