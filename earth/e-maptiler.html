@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <title>地球仪</title>
+    <link rel="icon" href="https:/ion.cesium.com/favicon.ico">
+    <script src="https://cesium.com/downloads/cesiumjs/releases/1.137/Build/Cesium/Cesium.js"></script>
+    <link href="https://cesium.com/downloads/cesiumjs/releases/1.137/Build/Cesium/Widgets/widgets.css" rel="stylesheet">
+    <style>
+        #cesiumContainer {
+            width: 100%;
+            height: 100vh;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="cesiumContainer"></div>
+    <script>
+        // 注意：必须在 new Cesium.Viewer 之前执行
+        Cesium.Camera.DEFAULT_VIEW_RECTANGLE = Cesium.Rectangle.fromDegrees(
+            73.0, 15.0, 135.0, 55.0 // 西、南、东、北（大致覆盖中国版图）
+        );
+        // Cesium.Camera.DEFAULT_VIEW_FACTOR = 1.2; // 视角缩放因子，越大看得越远
+
+        // https://api.maptiler.com/maps/streets-v2/{z}/{x}/{y}.png?key=YOUR_MAPTILER_API_KEY
+
+        // https://api.maptiler.com/tiles/countries/{z}/{x}/{y}.pbf?key=VEqS4JHqzQHMKhn62QIm
+        // https://api.maptiler.com/maps/outdoor-v4/?key=VEqS4JHqzQHMKhn62QIm#-0.2/0.00000/21.39509
+        // https://api.maptiler.com/maps/outdoor-v4/{z}/{x}/{y}.png?key=VEqS4JHqzQHMKhn62QIm
+
+        // GPT map
+        // const viewer = new Cesium.Viewer("cesiumContainer", {
+        //     imageryProvider: new Cesium.UrlTemplateImageryProvider({
+        //         url: "https://api.maptiler.com/maps/outdoor-v4/{z}/{x}/{y}.png?key=VEqS4JHqzQHMKhn62QIm",
+        //         tileWidth: 256,
+        //         tileHeight: 256
+        //     }),
+        //     baseLayerPicker: false
+        // });
+
+        const viewer = new Cesium.Viewer('cesiumContainer', {
+            imageryProvider: false
+        });
+        // const vecLayer = new Cesium.UrlTemplateImageryProvider({
+        //     url: "https://api.maptiler.com/maps/outdoor-v4/{z}/{x}/{y}.png?key=VEqS4JHqzQHMKhn62QIm",
+        //     tileWidth: 256,
+        //     tileHeight: 256
+        // });
+        // viewer.imageryLayers.addImageryProvider(vecLayer);
+        // GPT vecter
+        const vectorLayer = new Cesium.VectorTileImageryProvider({
+            // url: "https://api.maptiler.com/tiles/v3/{z}/{x}/{y}.pbf?key=YOUR_KEY",
+            url: "https://api.maptiler.com/tiles/countries/{z}/{x}/{y}.pbf?key=VEqS4JHqzQHMKhn62QIm",
+            style: {
+                layers: {
+                    country: {
+                        filter: ["==", "layer", "country"],
+                        paint: {
+                            "fill-color": "rgba(0, 120, 255, 0.4)",
+                            "fill-outline-color": "#ffffff"
+                        }
+                    }
+                }
+            }
+        });
+        viewer.imageryLayers.addImageryProvider(vectorLayer);
+
+
+    </script>
+</body>
+
+</html>

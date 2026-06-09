@@ -1,0 +1,263 @@
+<html>
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>程序员计算器</title>
+<link rel="manifest" href="./manifest.json">
+<meta name="theme-color" content="#4CAF50">
+<style>
+* {
+    font-size: 24px;
+    letter-spacing: 0;
+    /* font-family: ui-monospace, SFMono-Regular, "Cascadia Code", "Segoe UI", "Liberation Mono", monospace; */
+    /* font-family: "Consolas", "Lucida Console", monospace; */
+    /* font-family: monospace; */
+    font-family: Consolas, Menlo, Monaco, "Roboto Mono", "Droid Sans Mono", monospace;
+}
+table {
+    width: 100%;
+}
+td {
+    padding: 10px 1vw;
+    height: 8vw;
+}
+.td_base_type {
+    color: DodgerBlue;
+    padding: 0;
+    width: 10vw;
+    text-align: right;
+}
+.td_base_type input {
+    margin: 0;
+}
+.td_base_type label {
+    margin: 0;
+}
+.td_base_value {
+    text-align: right;
+}
+.td_base_value div {
+    float: right;
+    /* word-break: break-all; */
+    white-space: pre-wrap;
+}
+.base_tr td {
+    border-bottom: black solid 1px;
+}
+input[type=text] {
+    width: 100%;
+    padding: 10px;
+}
+.active {
+    color: LimeGreen;
+}
+.error {
+    color: red;
+}
+button {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5vw;
+}
+.button_tb {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed
+}
+.button_tb td, .button_tb th {
+    padding: 10px;
+    border: 1px solid #000;
+    text-align: center;
+}
+.digit_td {
+    background: white;
+}
+.calculat_td {
+    background: SpringGreen;
+}
+.ctrl_td {
+    background: OrangeRed;
+}
+.letter_td {
+    background: DeepSkyBlue;
+}
+.bin_td {
+    background: SpringGreen;
+}
+.couple_td {
+    background: wheat;
+}
+.his_td {
+    background: Gainsboro;
+}
+</style>
+</head>
+
+<body ng-app="myApp" ng-controller="myCtrl">
+    <table>
+        <tr>
+            <td colspan="2">
+                <input id="RES" type="text" ng-model="RES.value" ng-change="ChangeIpt()" placeholder="输入数学表达式"/>
+            </td>
+        </tr>
+        <tr class="base_tr">
+            <td class="td_base_type">
+                <label ng-class="DEC.selected?'active':''" ng-click="SelectBase(DEC)">DEC</label>
+            </td>
+            <td class="td_base_value">
+                <div>{{DEC.value}}</div>
+            </td>
+        </tr>
+        <tr class="base_tr">
+            <td class="td_base_type">
+                <label ng-class="HEX.selected?'active':''" ng-click="SelectBase(HEX)">HEX</label>
+            </td>
+            <td class="td_base_value">
+                <div>{{HEX.value}}</div>
+            </td>
+        </tr>
+        <tr class="base_tr" ng-if="false">
+            <td class="td_base_type">
+                <label ng-class="OTC.selected?'active':''" ng-click="SelectBase(OTC)">OTC</label>
+            </td>
+            <td class="td_base_value">
+                <div>{{OTC.value}}</div>
+            </td>
+        </tr>
+        <tr class="base_tr">
+            <td class="td_base_type">
+                <label ng-class="BIN.selected?'active':''" ng-click="SelectBase(BIN)">BIN</label>
+            </td>
+            <td class="td_base_value">
+                <div>{{BIN.value}}</div>
+            </td>
+        </tr>
+    </table>
+    <table class="button_tb">
+        <tr>
+            <td ng-click="ClickBtm('&')" class="bin_td">&</td>
+            <td ng-click="ClickBtm('|')" class="bin_td">|</td>
+            <td ng-click="ClickBtm('!')" class="bin_td">!</td>
+            <td ng-click="ClickBtm('^')" class="bin_td">^</td>
+        </tr>
+        <tr>
+            <td ng-click="ClickBtm('(')" class="couple_td">(</td>
+            <td ng-click="ClickBtm(')')" class="couple_td">)</td>
+            <td ng-click="ClickBtm('<<')" class="couple_td"><<</td>
+            <td ng-click="ClickBtm('>>')" class="couple_td">>></td>
+        </tr>
+        <tr>
+            <td ng-click="ClickBtm('D')" class="letter_td">D</td>
+            <td ng-click="ClickBtm('E')" class="letter_td">E</td>
+            <td ng-click="ClickBtm('F')" class="letter_td">F</td>
+            <td ng-click="Clear()" class="ctrl_td">CL</td>
+        </tr>
+        <tr>
+            <td ng-click="ClickBtm('A')" class="letter_td">A</td>
+            <td ng-click="ClickBtm('B')" class="letter_td">B</td>
+            <td ng-click="ClickBtm('C')" class="letter_td">C</td>
+            <td ng-click="ClickBtm('/')" class="calculat_td">/</td>
+        </tr>
+        <tr>
+            <td ng-click="ClickBtm('7')" class="digit_td">7</td>
+            <td ng-click="ClickBtm('8')" class="digit_td">8</td>
+            <td ng-click="ClickBtm('9')" class="digit_td">9</td>
+            <td ng-click="ClickBtm('*')" class="calculat_td">*</td>
+        </tr>
+        <tr>
+            <td ng-click="ClickBtm('4')" class="digit_td">4</td>
+            <td ng-click="ClickBtm('5')" class="digit_td">5</td>
+            <td ng-click="ClickBtm('6')" class="digit_td">6</td>
+            <td ng-click="ClickBtm('-')" class="calculat_td">-</td>
+        </tr>
+        <tr>
+            <td ng-click="ClickBtm('1')" class="digit_td">1</td>
+            <td ng-click="ClickBtm('2')" class="digit_td">2</td>
+            <td ng-click="ClickBtm('3')" class="digit_td">3</td>
+            <td ng-click="ClickBtm('+')" class="calculat_td">+</td>
+        </tr>
+        <tr>
+            <td ng-click="ClickBtm('')" class="his_td">↻</td>
+            <td ng-click="ClickBtm('0')" class="digit_td">0</td>
+            <td ng-click="BackBtm()" class="ctrl_td">←</td>
+            <td ng-click="ClickBtm('')" class="qut_td">=</td>
+        </tr>
+    </table>
+</body>
+
+<!-- <script src="js/jquery-3.0.0.min.js"></script> -->
+<script src="js/angular.min.js"></script>
+<script src="js/my_tool.js"></script>
+<script>
+    window.onload = function() {
+        RES.focus();
+    };
+    function ToNum(val) {
+        val = val.toString();
+        val = val.replace(/\w(?=(\w{16})+(?!\w))/g, '$&\n');
+        val = val.replace(/\w(?=(\w{4})+(?!\w))/g, '$& ');
+        return val;
+    }
+    var app = angular.module('myApp', []);
+    app.controller('myCtrl', function($scope, $http) {
+        $scope.RES = {value: '', selected: false};
+        $scope.DEC = {value: 0, selected: true};
+        $scope.HEX = {value: 0, selected: false};
+        $scope.OTC = {value: 0, selected: false};
+        $scope.BIN = {value: 0, selected: false};
+
+        $scope.ChangeIpt = function() {
+            var exp = $scope.RES.value.toString();
+            if ($scope.HEX.selected) {
+                exp =  exp.replace(/(\w+)/g, "0x$1");
+            } else if ($scope.OTC.selected) {
+                exp =  exp.replace(/(\w+)/g, "0o$1");
+            } else if ($scope.BIN.selected) {
+                exp =  exp.replace(/(\w+)/g, "0b$1");
+            }
+            RES.classList.remove('error');
+            try {
+                var res = eval(exp);
+            } catch (error) {
+                RES.classList.add('error');
+                console.error("exp err:", error.message);
+                return;
+            }
+            $scope.DEC.value = ToNum(res.toString(10));
+            $scope.HEX.value = ToNum(res.toString(16).toUpperCase());
+            $scope.OTC.value = ToNum(res.toString(8));
+            $scope.BIN.value = ToNum(res.toString(2));
+        };
+
+        $scope.SelectBase = function(base) {
+            // $scope.RES.value = '';
+            $scope.DEC.selected = false;
+            $scope.HEX.selected = false;
+            $scope.OTC.selected = false;
+            $scope.BIN.selected = false;
+            base.selected = true;
+            // RES.focus();
+            $scope.ChangeIpt();
+        };
+
+        $scope.Clear = function() {
+            $scope.RES.value = '0';
+            $scope.ChangeIpt();
+            $scope.RES.value = '';
+            // RES.focus();
+        };
+
+        $scope.BackBtm = function() {
+            $scope.RES.value = $scope.RES.value.slice(0, -1);
+            $scope.ChangeIpt();
+        };
+
+        $scope.ClickBtm = function(btm) {
+            $scope.RES.value += btm;
+            $scope.ChangeIpt();
+        };
+    });
+</script>
+
+</html>
