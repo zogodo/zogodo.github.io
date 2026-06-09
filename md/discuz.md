@@ -43,9 +43,23 @@ http://www.codeeel.com/?p=365
 
 ## 使用方法
 
-1. 下载官方安装包: [Discuz_X3.4_SC_UTF8_20230520.zip](https://github.com/zogodo/discuz_with_ldap/raw/master/Discuz_X3.4_SC_UTF8_20230520.zip) 并安装. (安装方法请自行搜索)
+1. 下载官方安装包: [Discuz_X3.4_SC_UTF8_20230520.zip](https://github.com/zogodo/discuz_with_ldap/raw/master/Discuz_X3.4_SC_UTF8_20230520.zip) 并安装
+
+   安装方法:
+
+   ```sh
+   yum install httpd php mysql
+   unzip Discuz_X3.4_SC_UTF8_20230520.zip
+   sudo cp -r upload/ /var/www/html/discuz/
+   systemctl start httpd.service
+   ```
+
+   访问 <http://x.x.x.x/discuz> 按提示操作
+
 2. 修改本项目 `upload/uc_client/control/user.php` 的 116~119 行配置成你们公司 Ldap 的情况.
+
 3. 将原来的 `upload/uc_client/control/user.php` 换成本项目的 `upload/uc_client/control/user.php`
+
 4. 完成.
 
 
