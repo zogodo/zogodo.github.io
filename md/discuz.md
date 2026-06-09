@@ -41,7 +41,7 @@ http://www.codeeel.com/?p=365
 
 
 
-# 安装方法
+## 安装方法
 
 ```sh
 yum install httpd php mysql
