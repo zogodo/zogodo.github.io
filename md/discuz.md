@@ -41,7 +41,7 @@ http://www.codeeel.com/?p=365
 
 
 
-## 安装方法
+## Discuz 安装方法
 
 ```sh
 yum install httpd php mysql
@@ -54,7 +54,7 @@ systemctl start httpd.service
 
 
 
-## 使用方法
+## Ldap 使用方法
 
 1. 下载官方安装包: [Discuz_X3.4_SC_UTF8_20230520.zip](https://github.com/zogodo/discuz_with_ldap/raw/master/Discuz_X3.4_SC_UTF8_20230520.zip) 并安装
 
