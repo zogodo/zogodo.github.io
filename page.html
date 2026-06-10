@@ -60,7 +60,7 @@
         var cnt_div = document.getElementById("cnt_div");
 
         url = "md/"+gitalk_id+".md"; //不实时
-        url = `https://raw.githubusercontent.com/zogodo/zogodo.github.io/refs/heads/master/md/${gitalk_id}.md`;
+        // url = `https://raw.githubusercontent.com/zogodo/zogodo.github.io/refs/heads/master/md/${gitalk_id}.md`; //也不实时
         if (gitalk_id == "test1") {
             url = `https://github.com/zogodo/zogodo.github.io/refs/heads/master/md/claude.md`; //被拦截（原因：CORS 头缺少 'Access-Control-Allow-Origin'）。状态码：404。
         }
