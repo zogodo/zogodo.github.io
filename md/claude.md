@@ -14,7 +14,6 @@ Win + R 打开 CMD 执行以下命令:
 npm config set registry http://mirrors.cloud.tencent.com/npm/
 npm config get registry
 npm install -g @anthropic-ai/claude-code
-
 claude
 ```
 
