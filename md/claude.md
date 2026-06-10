@@ -34,7 +34,7 @@ setx ANTHROPIC_BASE_URL "https://dashscope.aliyuncs.com/apps/anthropic"
 setx ANTHROPIC_MODEL "glm-5"  #选你要的模型
 ```
 
-关闭 CMD 重新打开, 在执行看环境变量是否设置成功
+关闭 CMD 重新打开, 执行看环境变量是否设置成功
 
 
 ```sh
