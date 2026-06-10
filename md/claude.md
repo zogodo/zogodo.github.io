@@ -1,8 +1,12 @@
 # Windows 安装 Claude Code
 
-## 安装 node 和 git
+## 安装 node 和 python
 
-## 安装
+node 下载: <https://nodejs.org/zh-cn/download>
+
+python 下载: <https://www.python.org/downloads/>
+
+## 安装 claude-code
 
 Win + R 打开 CMD 执行以下命令:
 
