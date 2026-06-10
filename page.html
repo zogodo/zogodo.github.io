@@ -60,7 +60,10 @@
         var cnt_div = document.getElementById("cnt_div");
 
         url = "md/"+gitalk_id+".md";
-        // url = `https://github.com/zogodo/zogodo.github.io/raw/refs/heads/master/md/${gitalk_id}.md`;
+        if (gitalk_id == "va") {
+            url =                `https://github.com/zogodo/zogodo.github.io/refs/heads/master/md/${gitalk_id}.md`;
+            url = `https://raw.githubusercontent.com/zogodo/zogodo.github.io/refs/heads/master/md/${gitalk_id}.md`;
+        }
         if (gitalk_id == "va") {
             url = "https://raw.githubusercontent.com/zogodo/SandVXposed/master/doc/VirtualApp%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90.md"
         }
