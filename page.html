@@ -59,12 +59,10 @@
         $scope.gitalk_id = gitalk_id;
         var cnt_div = document.getElementById("cnt_div");
 
-        url = "md/"+gitalk_id+".md";
+        url = "md/"+gitalk_id+".md"; //不实时
+        url = `https://raw.githubusercontent.com/zogodo/zogodo.github.io/refs/heads/master/md/${gitalk_id}.md`;
         if (gitalk_id == "test1") {
-            url = `https://github.com/zogodo/zogodo.github.io/refs/heads/master/md/claude.md`;
-        }
-        if (gitalk_id == "test2") {
-            url = `https://raw.githubusercontent.com/zogodo/zogodo.github.io/refs/heads/master/md/claude.md`;
+            url = `https://github.com/zogodo/zogodo.github.io/refs/heads/master/md/claude.md`; //被拦截（原因：CORS 头缺少 'Access-Control-Allow-Origin'）。状态码：404。
         }
         if (gitalk_id == "va") {
             url = "https://raw.githubusercontent.com/zogodo/SandVXposed/master/doc/VirtualApp%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90.md"
