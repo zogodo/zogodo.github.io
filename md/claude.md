@@ -1,5 +1,7 @@
 # Windows 安装 Claude Code
 
+## 安装 node 和 git
+
 ## 安装
 
 Win + R 打开 CMD 执行以下命令:
