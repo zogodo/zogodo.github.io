@@ -2,7 +2,7 @@
 
 ## 安装
 
-Win + R 打开 CMD
+Win + R 打开 CMD 执行以下命令:
 
 ```sh
 npm config set registry http://mirrors.cloud.tencent.com/npm/
@@ -14,19 +14,19 @@ claude
 
 ## 配置
 
-修改 `C:\用户\<用户名>\.claude.json` 添加:
+修改 `C:\用户\<用户名>\.claude.json` 添加一行:
 
 ```json
-  "hasCompletedOnboarding": true,
+"hasCompletedOnboarding": true,
 ```
 
-## 阿里云百炼 API_KEY
+## 获取阿里云百炼 API_KEY
 
-生成阿里云百炼 API_KEY <https://bailian.console.aliyun.com/cn-beijing?tab=model#/api-key>
+生成阿里云百炼 API_KEY: <https://bailian.console.aliyun.com/cn-beijing?tab=model#/api-key>
 
 模型列表及用量: <https://bailian.console.aliyun.com/cn-beijing?tab=model#/model-usage>
 
-## 设置环境变量
+## 配置环境变量
 
 ```sh
 setx ANTHROPIC_API_KEY "sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
