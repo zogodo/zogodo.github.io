@@ -53,7 +53,7 @@
     <input ng-model="filter" ng-change="FilterVideo()" placeholder="空格隔开可多重匹配"/>
     </div>
     <p>{{videos.length}}
-        <button class="but_api_key" ng-if="filter.length==32">set api_key</button>
+        <button class="but_api_key" ng-if="!api_key||filter.length==32" ng-click="SetApiKey()">set api key</button>
     </p>
     <div class="item" ng-repeat="video in videos" ng-if="video.Type=='Video'">
         <!--
@@ -115,6 +115,11 @@
                 }
                 if ($scope.videos.length >= 100) break;
             }
+        };
+
+        $scope.SetApiKey = function() {
+            $scope.api_key = $scope.filter;
+            localStorage.setItem("api_key", $scope.api_key)
         };
     });
 </script>
