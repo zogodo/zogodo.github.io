@@ -82,7 +82,7 @@
     app.controller('myCtrl', function($scope, $http) {
         var all_videos = [];
         $scope.filter = "";
-        $scope.server = 'http://192.168.33.192:9096';
+        $scope.server = 'https://zogodo.duckdns.org:5668';
         $scope.api_key = '81b450fd530f45b09ce8025f01bdf31b';
         $scope.ParentId = '0b530665b2fc4c202ed078fee34ef85a';
         var url = `${$scope.server}/Items?ParentId=${$scope.ParentId}&Recursive=true&Fields=Path&api_key=${$scope.api_key}`;
