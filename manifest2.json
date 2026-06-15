@@ -1,0 +1,17 @@
+{
+  "name": "GithubIO Jellyfin",
+  "short_name": "G-Jellyfin",
+  "description": "GithubIO Jellyfin WebApp",
+  "start_url": "./jellyfin.html",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "cornflowerblue",
+  "icons": [
+    {
+      "src": "./img/jellyfin.png",
+      "sizes": "512x512",
+      "type": "image/jpg",
+      "purpose": "any maskable"
+    }
+  ]
+}
