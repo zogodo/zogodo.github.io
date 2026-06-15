@@ -123,7 +123,8 @@
 
         $scope.SetApiKey = function() {
             $scope.api_key = $scope.filter;
-            localStorage.setItem("api_key", $scope.api_key)
+            localStorage.setItem("api_key", $scope.api_key);
+            location.reload();
         };
     });
 </script>
