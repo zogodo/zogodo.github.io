@@ -43,13 +43,18 @@
         p {
             margin: 70px 0 10px 0;
         }
+        .but_api_key {
+            float: right;
+        }
     </style>
 </head>
 <body ng-app="myApp" ng-controller="myCtrl">
     <div class="ipt_div">
     <input ng-model="filter" ng-change="FilterVideo()" placeholder="空格隔开可多重匹配"/>
     </div>
-    <p>{{videos.length}}</p>
+    <p>{{videos.length}}
+        <button class="but_api_key" ng-if="filter.length==32">set api_key</button>
+    </p>
     <div class="item" ng-repeat="video in videos" ng-if="video.Type=='Video'">
         <!--
         {{video.Type}} : {{video.Id}} : {{video.Name}} : {{video.Path}}
@@ -84,7 +89,7 @@
         var all_videos = [];
         $scope.filter = "";
         $scope.server = 'https://zogodo.duckdns.org:5668';
-        $scope.api_key = '81b450fd530f45b09ce8025f01bdf31b';
+        $scope.api_key = localStorage.getItem("api_key");
         $scope.ParentId = '0b530665b2fc4c202ed078fee34ef85a';
         var url = `${$scope.server}/Items?ParentId=${$scope.ParentId}&Recursive=true&Fields=Path&api_key=${$scope.api_key}`;
         $http.get(url).then(function(response) {
