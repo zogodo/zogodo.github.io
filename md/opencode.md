@@ -1,4 +1,4 @@
-# Windows 安装 Claude Code
+# Windows 安装 OpenCode
 
 ## 安装 node 和 python
 
@@ -6,7 +6,7 @@ node 下载: <https://nodejs.org/zh-cn/download>
 
 python 下载: <https://www.python.org/downloads/>
 
-## 安装 opencode
+## 安装 OpenCode
 
 Windows (x64): <https://opencode.ai/zh/download>
 
