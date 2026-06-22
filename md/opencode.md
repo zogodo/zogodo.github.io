@@ -20,4 +20,4 @@ Windows (x64): <https://opencode.ai/zh/download>
 
 任选一个 Alibaba 的模型
 
-![](opencode.jpg)
+![](md/opencode.jpg)
