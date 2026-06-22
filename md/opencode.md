@@ -18,6 +18,6 @@ Windows (x64): <https://opencode.ai/zh/download>
 
 ## 打开 OpenCode
 
-任选一个 Alibaba 的模型
+任选一个 Alibaba 的模型并输入自己的 API_KEY
 
 ![](md/opencode.jpg)
