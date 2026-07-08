@@ -138,7 +138,7 @@ button {
         <tr>
             <td ng-click="ClickBtm('&')" class="bin_td">&</td>
             <td ng-click="ClickBtm('|')" class="bin_td">|</td>
-            <td ng-click="ClickBtm('!')" class="bin_td">!</td>
+            <td ng-click="ClickBtm('!')" class="bin_td">~</td>
             <td ng-click="ClickBtm('^')" class="bin_td">^</td>
         </tr>
         <tr>
@@ -151,7 +151,7 @@ button {
             <td ng-click="ClickBtm('D')" class="letter_td">D</td>
             <td ng-click="ClickBtm('E')" class="letter_td">E</td>
             <td ng-click="ClickBtm('F')" class="letter_td">F</td>
-            <td ng-click="Clear()" class="ctrl_td">CL</td>
+            <td ng-click="Clear()" class="ctrl_td">AC</td>
         </tr>
         <tr>
             <td ng-click="ClickBtm('A')" class="letter_td">A</td>
@@ -225,9 +225,9 @@ button {
                 return;
             }
             $scope.DEC.value = ToNum(res.toString(10));
-            $scope.HEX.value = ToNum(res.toString(16).toUpperCase());
-            $scope.OTC.value = ToNum(res.toString(8));
-            $scope.BIN.value = ToNum(res.toString(2));
+            $scope.HEX.value = ToNum(Math.trunc(res).toString(16).toUpperCase());
+            $scope.OTC.value = ToNum(Math.trunc(res).toString(8));
+            $scope.BIN.value = ToNum(Math.trunc(res).toString(2));
         };
 
         $scope.SelectBase = function(base) {
