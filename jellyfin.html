@@ -121,12 +121,14 @@
             $scope.videos = [];
             var texts = $scope.filter.split(' ');
             for (var i in all_videos) {
+                var has_all = true;
                 for (var j in texts) {
-                    if (all_videos[i].Path.includes(texts[j])) {
-                        $scope.videos.push(all_videos[i]);
+                    if (!all_videos[i].Path.includes(texts[j])) {
+                        has_all = false;
                         break;
                     }
                 }
+                if (has_all) $scope.videos.push(all_videos[i]);
                 if ($scope.videos.length >= 100) break;
             }
         };
