@@ -38,7 +38,7 @@
             background-color: #f0f0f0;
         }
         .ipt_div {
-            height: 60px;
+            height: 100px;
             box-sizing: border-box;
             padding: 10px 8px;
             position: fixed;
@@ -49,13 +49,20 @@
         }
         .ipt_div input {
             padding: 10px;
-            position: fixed;
-            top: 10px;
-            left: 8px;
-            right: 8px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        .sort_buttons {
+            display: flex;
+            gap: 8px;
+            margin-top: 6px;
+        }
+        .sort_buttons button {
+            flex: 1;
+            padding: 6px;
         }
         p {
-            margin: 70px 0 10px 0;
+            margin: 110px 0 10px 0;
         }
         .but_api_key {
             float: right;
@@ -65,6 +72,10 @@
 <body ng-app="myApp" ng-controller="myCtrl">
     <div class="ipt_div">
     <input ng-model="filter" ng-change="FilterVideo()" placeholder="空格隔开可多重匹配"/>
+    <div class="sort_buttons">
+        <button ng-click="SortVideo('random')">随机排序</button>
+        <button ng-click="SortVideo('date')">按添加时间倒序</button>
+    </div>
     </div>
     <p>{{videos.length}}
         <button class="but_api_key" ng-if="!api_key||filter.length==32" ng-click="SetApiKey()">set api key</button>
@@ -104,11 +115,11 @@
         $scope.filter = "";
         $scope.server = 'http://192.168.33.192:9096';
         if (window.location.href.includes("github.io")) {
-            $scope.server = 'https://zogodo.duckdns.org:15893';
+            $scope.server = 'https://zogodo.duckdns.org:9743';
         }
         $scope.api_key = localStorage.getItem("api_key");
         $scope.ParentId = '0b530665b2fc4c202ed078fee34ef85a';
-        var url = `${$scope.server}/Items?ParentId=${$scope.ParentId}&Recursive=true&Fields=Path&api_key=${$scope.api_key}`;
+        var url = `${$scope.server}/Items?ParentId=${$scope.ParentId}&Recursive=true&Fields=Path,DateCreated&api_key=${$scope.api_key}`;
         $http.get(url).then(function(response) {
             var indexs = Perm(response.data.Items.length);
             for (const i of indexs) {
@@ -134,6 +145,20 @@
                 if (has_all) $scope.videos.push(all_videos[i]);
                 if ($scope.videos.length >= 100) break;
             }
+        };
+
+        $scope.SortVideo = function(mode) {
+            if (mode === 'random') {
+                var indexes = Perm(all_videos.length);
+                all_videos = indexes.map(function(index) {
+                    return all_videos[index];
+                });
+            } else if (mode === 'date') {
+                all_videos.sort(function(a, b) {
+                    return new Date(b.DateCreated) - new Date(a.DateCreated);
+                });
+            }
+            $scope.FilterVideo();
         };
 
         $scope.SetApiKey = function() {
