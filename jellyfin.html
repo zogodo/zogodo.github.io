@@ -67,6 +67,13 @@
         .but_api_key {
             float: right;
         }
+        .v_count {
+            position: fixed;
+            bottom: 0px;
+            right: 0px;
+            padding: 6px;
+            background: #202020;
+        }
     </style>
 </head>
 <body ng-app="myApp" ng-controller="myCtrl">
@@ -90,7 +97,7 @@
         <br/>
         <br/>
     </div>
-    <span class="">{{videos.length}}</span>
+    <span class="v_count">{{videos.length}}</span>
 </body>
 
 <script src="js/angular.min.js"></script>
