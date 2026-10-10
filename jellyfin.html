@@ -61,7 +61,7 @@
             flex: 1;
             padding: 6px;
         }
-        p {
+        .fix {
             margin: 90px 0 10px 0;
         }
         .but_api_key {
@@ -86,7 +86,7 @@
     <div class="sort_buttons" ng-if="!api_key||filter.length==32">
         <button class="but_api_key" ng-click="SetApiKey()">set api key</button>
     </div>
-    </div>
+    <div class="fix"></div>
     <div class="item" ng-repeat="video in videos" ng-if="video.Type=='Video'">
         <div class="container">
             <a target="_blank" href="{{server}}/Videos/{{video.Id}}/stream?static=true&api_key={{api_key}}">
