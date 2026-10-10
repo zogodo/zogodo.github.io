@@ -38,9 +38,9 @@
             background-color: #f0f0f0;
         }
         .ipt_div {
-            height: 100px;
+            height: 87px;
             box-sizing: border-box;
-            padding: 10px 8px;
+            padding: 6px;
             position: fixed;
             top: 0px;
             left: 0px;
@@ -62,7 +62,7 @@
             padding: 6px;
         }
         p {
-            margin: 110px 0 10px 0;
+            margin: 90px 0 10px 0;
         }
         .but_api_key {
             float: right;
@@ -72,30 +72,25 @@
 <body ng-app="myApp" ng-controller="myCtrl">
     <div class="ipt_div">
     <input ng-model="filter" ng-change="FilterVideo()" placeholder="空格隔开可多重匹配"/>
-    <div class="sort_buttons">
+    <div class="sort_buttons" ng-if="api_key&&filter.length!=32">
         <button ng-click="SortVideo('random')">随机排序</button>
         <button ng-click="SortVideo('date')">按添加时间倒序</button>
     </div>
+    <div class="sort_buttons" ng-if="!api_key||filter.length==32">
+        <button class="but_api_key" ng-click="SetApiKey()">set api key</button>
     </div>
-    <p>{{videos.length}}
-        <button class="but_api_key" ng-if="!api_key||filter.length==32" ng-click="SetApiKey()">set api key</button>
-    </p>
+    </div>
     <div class="item" ng-repeat="video in videos" ng-if="video.Type=='Video'">
-        <!--
-        {{video.Type}} : {{video.Id}} : {{video.Name}} : {{video.Path}}
-        <video width="800" controls>
-            <source ng-src="{{server}}/Items/{{video.Id}}/Download?api_key={{api_key}}" type="video/mp4">
-            <source ng-src="{{server}}/Videos/{{video.Id}}/stream?static=true&api_key={{api_key}}" type="video/ts">
-            您的浏览器不支持 HTML5 视频。
-        </video>
-        -->
         <div class="container">
-            <img src="{{server}}/Items/{{video.Id}}/Images/Primary?api_key={{api_key}}&maxWidth=960&maxHeight=540&tag={{video.ImageTags.Primary}}" style="width:100%">
+            <a target="_blank" href="{{server}}/Videos/{{video.Id}}/stream?static=true&api_key={{api_key}}">
+                <img src="{{server}}/Items/{{video.Id}}/Images/Primary?api_key={{api_key}}&maxWidth=960&maxHeight=540&tag={{video.ImageTags.Primary}}" style="width:100%">
+            </a>
         </div>
         <a target="_blank" href="{{server}}/web/#/details?id={{video.Id}}">{{video.Path}}</a>
         <br/>
         <br/>
     </div>
+    <span class="">{{videos.length}}</span>
 </body>
 
 <script src="js/angular.min.js"></script>
@@ -121,13 +116,15 @@
         $scope.ParentId = '0b530665b2fc4c202ed078fee34ef85a';
         var url = `${$scope.server}/Items?ParentId=${$scope.ParentId}&Recursive=true&Fields=Path,DateCreated&api_key=${$scope.api_key}`;
         $http.get(url).then(function(response) {
-            var indexs = Perm(response.data.Items.length);
-            for (const i of indexs) {
-                if (response.data.Items[i].Type != 'Video') {
+            for (const item of response.data.Items) {
+                if (item.Type != 'Video') {
                     continue;
                 }
-                all_videos.push(response.data.Items[i]);
+                all_videos.push(item);
             }
+            all_videos.sort(function(a, b) {
+                return new Date(b.DateCreated) - new Date(a.DateCreated);
+            });
             $scope.videos = all_videos.slice(0, 100); //只拿前100个,太多了页面卡
         });
 
