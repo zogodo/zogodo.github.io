@@ -78,13 +78,12 @@
 </head>
 <body ng-app="myApp" ng-controller="myCtrl">
     <div class="ipt_div">
-    <input ng-model="filter" ng-change="FilterVideo()" placeholder="空格隔开可多重匹配"/>
-    <div class="sort_buttons" ng-if="api_key&&filter.length!=32">
-        <button ng-click="SortVideo('random')">随机排序</button>
-        <button ng-click="SortVideo('date')">按添加时间倒序</button>
-    </div>
-    <div class="sort_buttons" ng-if="!api_key||filter.length==32">
-        <button class="but_api_key" ng-click="SetApiKey()">set api key</button>
+        <input ng-model="filter" ng-change="FilterVideo()" placeholder="空格隔开可多重匹配"/>
+        <div class="sort_buttons" ng-if="api_key&&filter.length!=32">
+            <button ng-click="SortVideo('random')">随机排序</button>
+            <button ng-click="SortVideo('date')">按添加时间倒序</button>
+            <button ng-if="!api_key||filter.length==32" class="but_api_key" ng-click="SetApiKey()">set api key</button>
+        </div>
     </div>
     <div class="fix"></div>
     <div class="item" ng-repeat="video in videos" ng-if="video.Type=='Video'">
